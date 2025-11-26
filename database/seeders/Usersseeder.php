@@ -23,14 +23,14 @@ class Usersseeder extends Seeder
                 'id_role' => $ownerId,
                 'nama' => "Nayla Alya Namira",
                 'email' => "namira123@gmail.com",
-                'password' => "Namira123",
+                'password' => Hash::make("Namira123"),
                 'no_hp' => "088219120490"
             ],
             [
                 'id_role' => $adminId,
                 'nama' => "Habibah",
                 'email' => "habibah123@gmail.com",
-                'password' => "Habibah123",
+                'password' => Hash::make("Habibah123"),
                 'no_hp' => "085333456789"
             ]
        ]);
