@@ -6,6 +6,7 @@ use App\Models\users;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class Usersseeder extends Seeder
 {
@@ -23,14 +24,14 @@ class Usersseeder extends Seeder
                 'id_role' => $ownerId,
                 'nama' => "Nayla Alya Namira",
                 'email' => "namira123@gmail.com",
-                'password' => "Namira123",
+                'password' => Hash::make("Namira123"),
                 'no_hp' => "088219120490"
             ],
             [
                 'id_role' => $adminId,
                 'nama' => "Habibah",
                 'email' => "habibah123@gmail.com",
-                'password' => "Habibah123",
+                'password' => Hash::make("Habibah123"),
                 'no_hp' => "085333456789"
             ]
        ]);
