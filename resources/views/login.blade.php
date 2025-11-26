@@ -18,7 +18,7 @@
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 400px;
         }
         .login-card h2 {
@@ -48,9 +48,9 @@
         <h2>Login BrownyGift</h2>
 
         @if ($errors->any())
-            <div class="alert alert-danger">
-                {{ $errors->first() }}
-            </div>
+        <div class="alert alert-danger">
+            {{ $errors->first() }}
+        </div>
         @endif
 
         <form action="{{ url('/login') }}" method="POST">

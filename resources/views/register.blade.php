@@ -19,7 +19,7 @@
             background-color: #fff;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 400px;
         }
         .register-card h2 {
@@ -50,13 +50,14 @@
         <h2>Daftar BrownyGift</h2>
 
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
+
+        <div class="alert alert-danger">
+            <ul>
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
                 @endforeach
-                </ul>
-            </div>
+            </ul>
+        </div>
         @endif
 
         <form action="{{ url('/register') }}" method="POST">

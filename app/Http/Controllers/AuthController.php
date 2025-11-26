@@ -70,7 +70,6 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-
         return redirect('/dashboard')->with('success', 'Registrasi berhasil! Selamat berbelanja!');
     }
 
