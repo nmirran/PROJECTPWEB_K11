@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Auth;
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 
@@ -16,34 +19,22 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', function () {
-    /** @var \App\Models\users $user */
-    $user = Auth::user();
-
-    if (Auth::check() && ($user->role()->first()->role ?? null) === 'customer') {
-        return view('dashboard.user.index');
+    if (auth()->check() && auth()->user()->id_role == 3) {
+        return view('dashboard.customer.index');
     }
-
     return redirect('/')->with('error', 'Akses ditolak!');
 })->name('dashboard');
 
 Route::get('/admin', function () {
-    /** @var \App\Models\users $user */
-    $user = Auth::user();
-
-    if (Auth::check() && ($user->role()->first()->role ?? null) === 'admin') {
+    if (auth()->check() && auth()->user()->id_role == 2) {
         return view('dashboard.admin.index');
     }
-
     return redirect('/')->with('error', 'Akses ditolak! Hanya untuk Admin.');
 })->name('admin.dashboard');
 
 Route::get('/owner', function () {
-    /** @var \App\Models\users $user */
-    $user = Auth::user();
-
-    if (Auth::check() && ($user->role()->first()->role ?? null) === 'owner') {
+    if (auth()->check() && auth()->user()->id_role == 1) {
         return view('dashboard.owner.index');
     }
-
-    return redirect('/')->with('error', 'Akses ditolak! Hanya Owner.');
+    return redirect('/')->with('error', 'Hanya Owner yang boleh masuk!');
 })->name('owner.dashboard');

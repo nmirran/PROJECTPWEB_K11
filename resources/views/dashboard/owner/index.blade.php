@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +12,12 @@
             min-height: 100vh;
             font-family: 'Segoe UI', sans-serif;
         }
-
         .sidebar {
             background: linear-gradient(180deg, #d81b60, #880e4f);
             min-height: 100vh;
             padding: 0;
             box-shadow: 8px 0 30px rgba(216, 27, 96, 0.4);
         }
-
         .sidebar .nav-link {
             color: white;
             padding: 20px 30px;
@@ -28,7 +25,6 @@
             transition: all 0.3s;
             border-left: 4px solid transparent;
         }
-
         .sidebar .nav-link:hover,
         .sidebar .nav-link.active {
             background: rgba(255, 255, 255, 0.15);
@@ -43,7 +39,6 @@
         .content {
             padding: 50px;
         }
-
         .owner-card {
             background: white;
             border-radius: 25px;
@@ -52,17 +47,14 @@
             box-shadow: 0 15px 40px rgba(216, 27, 96, 0.2);
             transition: 0.4s;
         }
-
         .owner-card:hover {
             transform: translateY(-15px);
         }
-
         .owner-card i {
             font-size: 4.5rem;
             color: #d81b60;
             margin-bottom: 20px;
         }
-
         .stats-box {
             background: white;
             border-radius: 20px;
@@ -79,7 +71,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar Owner -->
@@ -171,8 +162,8 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

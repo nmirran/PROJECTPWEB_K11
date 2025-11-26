@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,6 @@
             padding: 0;
             box-shadow: 5px 0 20px rgba(255, 105, 180, 0.3);
         }
-
         .sidebar .nav-link {
             color: white;
             padding: 18px 25px;
@@ -28,7 +26,6 @@
             font-size: 1.05rem;
             transition: all 0.3s;
         }
-
         .sidebar .nav-link:hover,
         .sidebar .nav-link.active {
             background: rgba(255, 255, 255, 0.2);
@@ -59,19 +56,16 @@
             text-decoration: none;
             color: #333;
         }
-
         .card-menu:hover {
             transform: translateY(-15px);
             box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
             background: #fff5f9;
         }
-
         .card-menu i {
             font-size: 3.5rem;
             color: #ff69b4;
             margin-bottom: 15px;
         }
-
         .stats-card {
             background: white;
             border-radius: 15px;
@@ -82,7 +76,6 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3 sidebar p-0">
@@ -176,8 +169,8 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

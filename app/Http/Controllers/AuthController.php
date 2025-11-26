@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Users;
 
 class AuthController extends Controller
 {
@@ -18,33 +16,34 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            $user = Auth::user();
+        $user = Users::where('email', $request->email)
+                    ->where('password', $request->password)
+                    ->first();
 
-            $roleName = $user->role->role ?? null;
+        if ($user) {
+            Auth::login($user);
 
-            if ($roleName === 'owner') {
-                return redirect('/owner');
+            if ($user->id_role == 3) {
+                return redirect()->intended('/dashboard');
             }
 
-            if ($roleName === 'admin') {
-                return redirect('/admin');
+            if ($user->id_role == 2) {
+                return redirect()->intended('/admin');
             }
 
-            if ($roleName === 'customer' || $roleName === 'user') {
-                return redirect('/dashboard');
+            if ($user->id_role == 1) {
+                return redirect()->intended('/owner');
             }
 
-            return redirect('/dashboard');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah!'
+            'username' => 'Username atau password salah!'
         ])->withInput();
     }
 
@@ -56,27 +55,23 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'nama' => 'required|unique:users,nama',
-            'email' => 'required|email|unique:users,email',
-            'no_hp' => 'required',
+            'email'    => 'required|email|unique:users,email',
+            'nama'     => 'required',
+            'no_hp'    => 'required',
             'password' => 'required|min:6',
         ]);
 
-        $customerId = DB::table('roles')->where('role', 'customer')->value('id_role');
-
-        $user = User::create([
-            'id_role'  => $customerId,
-            'nama'     => $request->nama,
+        $user = Users::create([
+            'id_role'     => '3',
             'email'    => $request->email,
+            'nama' => $request->nama,
             'no_hp'    => $request->no_hp,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
         Auth::login($user);
-
-        return redirect('/dashboard')->with('success', 'Registrasi berhasil!');
+        return redirect('/dashboard')->with('success', 'Registrasi berhasil! Selamat berbelanja!');
     }
-
 
     public function logout()
     {

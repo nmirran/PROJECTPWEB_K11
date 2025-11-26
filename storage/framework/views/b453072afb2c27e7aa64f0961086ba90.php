@@ -47,14 +47,15 @@
     <div class="login-card">
         <h2>Login BrownyGift</h2>
 
-        @if ($errors->any())
+        <?php if($errors->any()): ?>
         <div class="alert alert-danger">
-            {{ $errors->first() }}
-        </div>
-        @endif
+            <?php echo e($errors->first()); ?>
 
-        <form action="{{ url('/login') }}" method="POST">
-            @csrf
+        </div>
+        <?php endif; ?>
+
+        <form action="<?php echo e(url('/login')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" required>
@@ -67,8 +68,9 @@
         </form>
 
         <div class="register-link">
-            <p>Belum punya akun? <a href="{{ url('/register') }}">Daftar</a></p>
+            <p>Belum punya akun? <a href="<?php echo e(url('/register')); ?>">Daftar</a></p>
         </div>
     </div>
 </body>
 </html>
+<?php /**PATH D:\COLLEGE LIFE\SEMESTER 3\PEMROGRAMAN WEBSITE\PROJECT\PROJECTPWEB_K11\resources\views/login.blade.php ENDPATH**/ ?>

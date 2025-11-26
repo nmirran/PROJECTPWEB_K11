@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="UTF-8">
@@ -16,7 +15,6 @@
             height: 100vh;
             font-family: Arial, sans-serif;
         }
-
         .register-card {
             background-color: #fff;
             padding: 40px;
@@ -24,40 +22,35 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 400px;
         }
-
         .register-card h2 {
             text-align: center;
             color: #ff69b4;
             margin-bottom: 30px;
         }
-
         .btn-register {
             background-color: #ffc0cb;
             color: #fff;
             width: 100%;
         }
-
         .btn-register:hover {
             background-color: #ff69b4;
         }
-
         .login-link {
             text-align: center;
             margin-top: 15px;
         }
-
         .login-link a {
             color: #ff69b4;
         }
     </style>
 </head>
-
 <body>
 
     <div class="register-card">
         <h2>Daftar BrownyGift</h2>
 
         @if ($errors->any())
+
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -70,12 +63,12 @@
         <form action="{{ url('/register') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="nama" class="form-label">Nama</label>
-                <input type="text" name="nama" class="form-control" required>
-            </div>
-            <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" name="nama" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="no_hp" class="form-label">No HP</label>
@@ -93,5 +86,4 @@
         </div>
     </div>
 </body>
-
 </html>

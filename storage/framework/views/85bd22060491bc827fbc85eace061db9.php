@@ -76,7 +76,7 @@
                     <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
                     <li class="nav-item"><a class="nav-link" href="#products">Produk</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Hubungi Kami</a></li>
-                    <li class="nav-item"><a class="btn btn-login ms-3" href="{{ url('/login') }}">Login</a></li>
+                    <li class="nav-item"><a class="btn btn-login ms-3" href="<?php echo e(url('/login')); ?>">Login</a></li>
                 </ul>
             </div>
         </div>
@@ -87,7 +87,7 @@
         <div class="container">
             <h1>BrownyGift</h1>
             <p>Solusi Kado Cantik & Manis untuk Orang Terdekat</p>
-            <a href="{{ url('/login') }}" class="btn btn-success mt-3">Masuk Sekarang</a>
+            <a href="<?php echo e(url('/login')); ?>" class="btn btn-success mt-3">Masuk Sekarang</a>
         </div>
     </header>
 
@@ -184,3 +184,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php /**PATH D:\COLLEGE LIFE\SEMESTER 3\PEMROGRAMAN WEBSITE\PROJECT\PROJECTPWEB_K11\resources\views/landing.blade.php ENDPATH**/ ?>
