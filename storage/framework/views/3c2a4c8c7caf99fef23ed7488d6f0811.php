@@ -79,18 +79,18 @@
                     <h2 class="fw-bold mb-0">BrownyGift</h2>
                     <h5>Owner Panel</h5>
                     <hr style="border-color: rgba(255,255,255,0.5);">
-                    <p class="mb-0"><strong>{{ auth()->user()->username }}</strong></p>
+                    <p class="mb-0"><strong><?php echo e(auth()->user()->username); ?></strong></p>
                     <span class="badge bg-warning text-dark fs-6">OWNER</span>
                 </div>
 
                 <div class="nav flex-column">
                     <a href="/owner" class="nav-link active"> Dashboard</a>
                     <a href="#" class="nav-link"> Profil Toko</a>
-                    <a href="#" class="nav-link"> Tambah Akun Karyawan</a>
-                    <a href="#" class="nav-link"> Laporan Manajemen Penjualan</a>
-                    <a href="#" class="nav-link"> Profil Saya</a>
+                    <a href="#" class="nav-link"> Manajemen Produk</a>
+                    <a href="#" class="nav-link"> Manajemen Pesanan</a>
+                    <a href="#" class="nav-link"> Manajemen Karyawan</a>
                     <hr style="border-color: rgba(255,255,255,0.4); margin: 30px;">
-                    <a href="{{ url('/logout') }}" class="nav-link text-white-50" onclick="return confirm('Keluar dari Owner Panel?')">
+                    <a href="<?php echo e(url('/logout')); ?>" class="nav-link text-white-50" onclick="return confirm('Keluar dari Owner Panel?')">
                         Logout
                     </a>
                 </div>
@@ -148,13 +148,13 @@
                     </div>
                     <div class="col-md-6">
                         <a href="#" class="owner-card d-block text-decoration-none">
-                            <h4>Laporan Manajemen Penjualan</h4>
+                            <h4>Lihat Laporan Manajemen Penjualan</h4>
                             <p class="text-muted">Monitor penjualan buket</p>
                         </a>
                     </div>
                     <div class="col-md-6">
                         <a href="#" class="owner-card d-block text-decoration-none">
-                            <h4>Profil Saya</h4>
+                            <h4>Profil Akun Owner</h4>
                             <p class="text-muted">Atur detail akun</p>
                         </a>
                     </div>
@@ -167,3 +167,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php /**PATH D:\COOLYEAHH!!\SMT 3\PROJECTPWEB_K11\resources\views/dashboard/owner/index.blade.php ENDPATH**/ ?>
