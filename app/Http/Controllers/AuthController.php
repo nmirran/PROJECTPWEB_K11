@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Users;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -20,7 +20,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = Users::where('email', $request->email)
+        $user = User::where('email', $request->email)
                     ->where('password', $request->password)
                     ->first();
 
@@ -61,7 +61,7 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = Users::create([
+        $user = User::create([
             'id_role'     => '3',
             'email'    => $request->email,
             'nama' => $request->nama,
