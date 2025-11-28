@@ -79,7 +79,6 @@
                     <h2 class="fw-bold mb-0">BrownyGift</h2>
                     <h5>Owner Panel</h5>
                     <hr style="border-color: rgba(255,255,255,0.5);">
-                    <p class="mb-0"><strong>{{ auth()->user()->username }}</strong></p>
                     <span class="badge bg-warning text-dark fs-6">OWNER</span>
                 </div>
 
