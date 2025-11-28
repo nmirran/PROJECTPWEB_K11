@@ -85,9 +85,10 @@
 
                 <div class="nav flex-column">
                     <a href="/owner" class="nav-link active"> Dashboard</a>
-                    <a href="#" class="nav-link"> Profil Toko</a>
-                    <a href="#" class="nav-link"> Tambah Akun Karyawan</a>
-                    <a href="#" class="nav-link"> Laporan Manajemen Penjualan</a>
+                    <a href="/owner/profil_toko" class="nav-link"> Profil Toko</a>
+                    <a href="/owner/karyawan" class="nav-link"> Tambah Karyawan</a>
+                    <a href="/owner/karyawan_list" class="nav-link"> Daftar Karyawan</a>
+                    <a href="#" class="nav-link"> Laporan Penjualan</a>
                     <a href="#" class="nav-link"> Profil Saya</a>
                     <hr style="border-color: rgba(255,255,255,0.4); margin: 30px;">
                     <a href="{{ url('/logout') }}" class="nav-link text-white-50" onclick="return confirm('Keluar dari Owner Panel?')">
@@ -135,21 +136,27 @@
                 <h3 class="mb-4 text-dark">Menu Owner</h3>
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <a href="#" class="owner-card d-block text-decoration-none">
+                        <a href="/owner/profil_toko" class="owner-card d-block text-decoration-none">
                             <h4>Profil Toko</h4>
-                            <p class="text-muted">Atur Informasi Toko</p>
+                            <p class="text-muted">Atur informasi toko</p>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="/owner/karyawan" class="owner-card d-block text-decoration-none">
+                            <h4>Tambah Karyawan</h4>
+                            <p class="text-muted">Atur akun karyawan</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/owner/karyawan_list" class="owner-card d-block text-decoration-none">
+                            <h4>Daftar Karyawan</h4>
+                            <p class="text-muted">Lihat akun karyawan</p>
                         </a>
                     </div>
                     <div class="col-md-6">
                         <a href="#" class="owner-card d-block text-decoration-none">
-                            <h4>Tambah Akun Karyawan</h4>
-                            <p class="text-muted">Atur dan tambah akun untuk karyawan</p>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="#" class="owner-card d-block text-decoration-none">
-                            <h4>Laporan Manajemen Penjualan</h4>
-                            <p class="text-muted">Monitor penjualan buket</p>
+                            <h4>Laporan Penjualan</h4>
+                            <p class="text-muted">Lihat Laporan Penjualan</p>
                         </a>
                     </div>
                     <div class="col-md-6">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -20,27 +22,17 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)
-                    ->where('password', $request->password)
-                    ->first();
-
-        if ($user) {
+        $user = User::where('email', $request->email)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
 
-            if ($user->id_role == 3) {
-                return redirect()->intended('/dashboard');
-            }
+            if ($user->id_role == 3) return redirect('/dashboard');
+            if ($user->id_role == 2) return redirect('/admin');
+            if ($user->id_role == 1) return redirect('/owner');
 
-            if ($user->id_role == 2) {
-                return redirect()->intended('/admin');
-            }
-
-            if ($user->id_role == 1) {
-                return redirect()->intended('/owner');
-            }
-
-            return redirect()->intended('/dashboard');
+            return redirect('/dashboard');
         }
+
 
         return back()->withErrors([
             'username' => 'Username atau password salah!'
@@ -66,7 +58,7 @@ class AuthController extends Controller
             'email'    => $request->email,
             'nama' => $request->nama,
             'no_hp'    => $request->no_hp,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
         ]);
 
         Auth::login($user);
