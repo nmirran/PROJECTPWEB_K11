@@ -93,7 +93,6 @@
 
                 <div class="nav flex-column">
                     <a href="/owner" class="nav-link active"> Dashboard</a>
-
                     <a href="/owner/profil_toko" class="nav-link"> Profil Toko</a>
                     <a href="/owner/karyawan" class="nav-link"> Tambah Karyawan</a>
                     <a href="/owner/karyawan_list" class="nav-link"> Daftar Karyawan</a>
