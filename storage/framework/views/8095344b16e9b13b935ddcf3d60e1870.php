@@ -233,17 +233,17 @@
         <div class="col-md-3 sidebar">
             <div class="text-center mb-5">
                 <h4 class="text-white fw-bold">BrownyGift</h4>
-                <p class="text-white">Halo, {{ auth()->user()->username }}!</p>
+                <p class="text-white">Halo, <?php echo e(auth()->user()->username); ?>!</p>
             </div>
-            <a href="{{ route('dashboard.customer.index') }}"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="{{ route('dashboard.customer.profil') }}"><i class="fas fa-user"></i> Profil Saya</a>
-            <a href="{{ route('dashboard.customer.produk') }}"><i class="fas fa-gift"></i> Produk</a>
-            <a href="{{ route('dashboard.customer.keranjang') }}"><i class="fas fa-shopping-cart"></i> Keranjang</a>
-            <a href="{{ route('dashboard.customer.pesanan') }}" class="active"><i class="fas fa-truck"></i> Pesanan Saya</a>
-            <a href="{{ route('dashboard.customer.riwayat') }}"><i class="fas fa-history"></i> Riwayat Belanja</a>
+            <a href="<?php echo e(route('dashboard.customer.index')); ?>"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="<?php echo e(route('dashboard.customer.profil')); ?>"><i class="fas fa-user"></i> Profil Saya</a>
+            <a href="<?php echo e(route('dashboard.customer.produk')); ?>"><i class="fas fa-gift"></i> Produk</a>
+            <a href="<?php echo e(route('dashboard.customer.keranjang')); ?>"><i class="fas fa-shopping-cart"></i> Keranjang</a>
+            <a href="<?php echo e(route('dashboard.customer.pesanan')); ?>" class="active"><i class="fas fa-truck"></i> Pesanan Saya</a>
+            <a href="<?php echo e(route('dashboard.customer.riwayat')); ?>"><i class="fas fa-history"></i> Riwayat Belanja</a>
 
             <div class="logout">
-                <a href="{{ url('/logout') }}" onclick="return confirm('Yakin ingin keluar?')">
+                <a href="<?php echo e(url('/logout')); ?>" onclick="return confirm('Yakin ingin keluar?')">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
@@ -334,7 +334,7 @@
                     </div>
                     <h4>Belum Ada Pesanan</h4>
                     <p>Anda belum memiliki pesanan apapun</p>
-                    <a href="{{ route('dashboard.customer.produk') }}" class="btn-shop">
+                    <a href="<?php echo e(route('dashboard.customer.produk')); ?>" class="btn-shop">
                         <i class="fas fa-gift me-2"></i> Mulai Belanja
                     </a>
                 </div>
@@ -534,3 +534,4 @@
 </script>
 </body>
 </html>
+<?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/dashboard/customer/pesanansaya.blade.php ENDPATH**/ ?>
