@@ -23,16 +23,21 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $request->email)->first();
+
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
 
-            if ($user->id_role == 3) return redirect('/dashboard');
-            if ($user->id_role == 2) return redirect('/admin');
-            if ($user->id_role == 1) return redirect('/owner');
+            if ($user->id_role == 3)
+                return redirect()->route('dashboard.customer.index');
 
-            return redirect('/dashboard');
+            if ($user->id_role == 2)
+                return redirect('/admin');
+
+            if ($user->id_role == 1)
+                return redirect('/owner');
+
+            return redirect('/dashboard/customer');
         }
-
 
         return back()->withErrors([
             'username' => 'Username atau password salah!'
@@ -55,14 +60,16 @@ class AuthController extends Controller
 
         $user = User::create([
             'id_role'     => '3',
-            'email'    => $request->email,
-            'nama' => $request->nama,
-            'no_hp'    => $request->no_hp,
-            'password' => bcrypt($request->password),
+            'email'       => $request->email,
+            'nama'        => $request->nama,
+            'no_hp'       => $request->no_hp,
+            'password'    => bcrypt($request->password),
         ]);
 
         Auth::login($user);
-        return redirect('/dashboard')->with('success', 'Registrasi berhasil! Selamat berbelanja!');
+
+        return redirect()->route('dashboard.customer.index')
+            ->with('success', 'Registrasi berhasil! Selamat berbelanja!');
     }
 
     public function logout()

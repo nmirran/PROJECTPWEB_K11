@@ -33,7 +33,14 @@ class Usersseeder extends Seeder
                 'email' => "habibah123@gmail.com",
                 'password' => Hash::make("Habibah123"),
                 'no_hp' => "085333456789"
+            ],
+            [
+                'id_role' => $customerId,
+                'nama' => "Rafi Maulana Fauzi",
+                'email' => "rafi123@gmail.com",
+                'password' => Hash::make("Rafi123"),
+                'no_hp' => "082229943627"
             ]
-       ]);
+        ]);
     }
 }
