@@ -11,7 +11,6 @@ class Users extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'users';
-
     protected $primaryKey = 'id_user';
     public $incrementing = true;
     protected $keyType = 'int';
@@ -23,6 +22,11 @@ class Users extends Authenticatable
         'nama',
         'no_hp',
     ];
+
+    protected $hidden = [
+            'password',
+            'remember_token',
+        ];
 
     public function role()
     {

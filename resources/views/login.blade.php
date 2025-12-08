@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif;8
         }
         .login-card {
             background-color: #fff;

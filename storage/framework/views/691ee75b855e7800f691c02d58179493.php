@@ -418,7 +418,7 @@
         </nav>
 
         <div class="sidebar-footer">
-            <a href="{{ url('/logout') }}" class="text-danger text-decoration-none" onclick="return confirm('Yakin logout?')">
+            <a href="<?php echo e(url('/logout')); ?>" class="text-danger text-decoration-none" onclick="return confirm('Yakin logout?')">
                 <i class="bi bi-box-arrow-left me-2"></i> Keluar
             </a>
         </div>
@@ -552,3 +552,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php /**PATH D:\COLLEGE LIFE\SEMESTER 3\PEMROGRAMAN WEBSITE\PROJECT\PROJECTPWEB_K11\resources\views/dashboard/admin/index.blade.php ENDPATH**/ ?>

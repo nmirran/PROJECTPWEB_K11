@@ -20,12 +20,10 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = Users::where('email', $request->email)
-                    ->where('password', $request->password)
-                    ->first();
-
-        if ($user) {
-            Auth::login($user);
+        if(Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password])) {
+            $user = Auth::user();
 
             if ($user->id_role == 3) {
                 return redirect()->intended('/dashboard');
@@ -43,7 +41,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'username' => 'Username atau password salah!'
+            'email' => 'Email atau password salah!'
         ])->withInput();
     }
 
@@ -66,7 +64,7 @@ class AuthController extends Controller
             'email'    => $request->email,
             'nama' => $request->nama,
             'no_hp'    => $request->no_hp,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
 
         Auth::login($user);

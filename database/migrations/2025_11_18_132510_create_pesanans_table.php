@@ -25,8 +25,10 @@ return new class extends Migration
             $table->foreign('id_status_pemesanan')->references('id_status_pemesanan')->on('status_pemesanan')->onDelete('cascade');
             $table->integer('total');
             $table->string('bukti_pembayaran')->nullable();
+            $table->string('catatan')->nullable();
+            $table->dateTime('tanggal_pemesanan');
+            $table->dateTime('tanggal_pengambilan') -> nullable();
             $table->dateTime('tanggal_konfirmasi')->nullable();
-            $table->timestamps();
         });
     }
 
