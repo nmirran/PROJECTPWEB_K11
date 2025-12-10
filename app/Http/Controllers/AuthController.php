@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Users;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -20,24 +22,21 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if(Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password])) {
-            $user = Auth::user();
+        $user = User::where('email', $request->email)->first();
 
-            if ($user->id_role == 3) {
-                return redirect()->intended('/dashboard');
-            }
+        if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
 
-            if ($user->id_role == 2) {
-                return redirect()->intended('/admin');
-            }
+            if ($user->id_role == 3)
+                return redirect()->route('dashboard.customer.index');
 
-            if ($user->id_role == 1) {
-                return redirect()->intended('/owner');
-            }
+            if ($user->id_role == 2)
+                return redirect('/admin');
 
-            return redirect()->intended('/dashboard');
+            if ($user->id_role == 1)
+                return redirect('/owner');
+
+            return redirect('/dashboard/customer');
         }
 
         return back()->withErrors([
@@ -59,16 +58,18 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = Users::create([
+        $user = User::create([
             'id_role'     => '3',
-            'email'    => $request->email,
-            'nama' => $request->nama,
-            'no_hp'    => $request->no_hp,
-            'password' => Hash::make($request->password),
+            'email'       => $request->email,
+            'nama'        => $request->nama,
+            'no_hp'       => $request->no_hp,
+            'password'    => bcrypt($request->password),
         ]);
 
         Auth::login($user);
-        return redirect('/dashboard')->with('success', 'Registrasi berhasil! Selamat berbelanja!');
+
+        return redirect()->route('dashboard.customer.index')
+            ->with('success', 'Registrasi berhasil! Selamat berbelanja!');
     }
 
     public function logout()

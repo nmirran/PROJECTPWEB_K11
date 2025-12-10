@@ -90,7 +90,7 @@
                     <a href="#" class="nav-link"> Laporan Penjualan</a>
                     <a href="#" class="nav-link"> Profil Saya</a>
                     <hr style="border-color: rgba(255,255,255,0.4); margin: 30px;">
-                    <a href="{{ url('/logout') }}" class="nav-link text-white-50" onclick="return confirm('Keluar dari Owner Panel?')">
+                    <a href="<?php echo e(url('/logout')); ?>" class="nav-link text-white-50" onclick="return confirm('Keluar dari Owner Panel?')">
                         Logout
                     </a>
                 </div>
@@ -173,3 +173,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/dashboard/owner/index.blade.php ENDPATH**/ ?>

@@ -76,12 +76,12 @@
                 <h4 class="text-white fw-bold">BrownyGift</h4>
                 <p class="text-white">Halo, {{ auth()->user()->username }}!</p>
             </div>
-            <a href="/dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="#"><i class="fas fa-user"></i> Profil Saya</a>
-            <a href="#"><i class="fas fa-gift"></i> Produk</a>
-            <a href="#"><i class="fas fa-shopping-cart"></i> Keranjang</a>
-            <a href="#"><i class="fas fa-truck"></i> Pesanan Saya</a>
-            <a href="#"><i class="fas fa-history"></i> Riwayat Belanja</a>
+         <a href="{{ route('dashboard.customer.index') }}"  class="active"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="{{ route('dashboard.customer.profil') }}"><i class="fas fa-user"></i> Profil Saya</a>
+            <a href="{{ route('dashboard.customer.produk') }}"><i class="fas fa-gift"></i> Produk</a>
+            <a href="{{ route('dashboard.customer.keranjang') }}"><i class="fas fa-shopping-cart"></i> Keranjang</a>
+            <a href="{{ route('dashboard.customer.pesanan') }}"><i class="fas fa-truck"></i> Pesanan Saya</a>
+            <a href="{{ route('dashboard.customer.riwayat') }}"><i class="fas fa-history"></i> Riwayat Belanja</a>
 
             <div class="logout">
                 <a href="{{ url('/logout') }}" onclick="return confirm('Yakin ingin keluar?')">

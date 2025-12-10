@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             StatusPembayaranSeeder::class,
             StatusPemesananSeeder::class,
             KecamatanSeeder::class,
-            DesaSeeder::class
+            DesaSeeder::class,
+            StoreSeeder::class
 
 
         ]);
