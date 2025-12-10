@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -14,12 +15,12 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route::get('/dashboard', function () {
-//     if (Auth::check() && Auth::user()->id_role == 3) {
-//         return view('dashboard.customer.index');
-//     }
-//     return redirect('/')->with('error', 'Akses ditolak! Hanya Customer.');
-// })->name('dashboard')->middleware('auth');
+Route::get('/dashboard', function () {
+    if (Auth::check() && Auth::user()->id_role == 3) {
+        return view('dashboard.customer.index');
+    }
+    return redirect('/')->with('error', 'Akses ditolak! Hanya Customer.');
+})->name('dashboard')->middleware('auth');
 
 Route::get('/admin', function () {
     if (Auth::check() && Auth::user()->id_role == 2) {
@@ -27,6 +28,24 @@ Route::get('/admin', function () {
     }
     return redirect('/')->with('error', 'Akses ditolak! Hanya untuk Admin.');
 })->name('admin.dashboard')->middleware('auth');
+
+Route::get('/admin/produk', [ProductController::class, 'index'])
+    ->name('produk.index')
+    ->middleware('auth');
+
+Route::get('/admin/produk/create', function () {
+    if (Auth::check() && Auth::user()->id_role == 2) {
+        return view('admin.produk.create');
+    }
+    return redirect('/')->with('error', 'Akses ditolak! Hanya untuk Admin.');
+})->name('produk.create')->middleware('auth');
+
+Route::get('/admin/profile', function () {
+    if (Auth::check() && Auth::user()->id_role == 2) {
+        return view('admin.profile.index');
+    }
+    return redirect('/')->with('error', 'Akses ditolak! Hanya untuk Admin.');
+})->name('profile.index')->middleware('auth');
 
 Route::get('/owner', function () {
     if (Auth::check() && Auth::user()->id_role == 1) {

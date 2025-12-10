@@ -224,15 +224,15 @@
         </div>
 
         <nav class="sidebar-nav">
-            <a href="{{ route('dashboard') }}" class="nav-link">
+            <a href="<?php echo e(route('dashboard')); ?>" class="nav-link">
                 <i class="bi bi-speedometer2"></i>
                 Dashboard
             </a>
-            <a href="{{ route('profile.index') }}" class="nav-link active">
+            <a href="<?php echo e(route('profile.index')); ?>" class="nav-link active">
                 <i class="bi bi-person"></i>
                 Profil
             </a>
-            <a href="{{ route('produk.index') }}" class="nav-link">
+            <a href="<?php echo e(route('produk.index')); ?>" class="nav-link">
                 <i class="bi bi-box-seam"></i>
                 Produk
             </a>
@@ -247,7 +247,7 @@
         </nav>
 
         <div class="sidebar-footer">
-            <a href="{{ route('logout') }}" class="text-danger text-decoration-none">
+            <a href="<?php echo e(route('logout')); ?>" class="text-danger text-decoration-none">
                 <i class="bi bi-box-arrow-left me-2"></i> Keluar
             </a>
         </div>
@@ -263,17 +263,18 @@
             </div>
 
             <!-- Success Message -->
-            @if(session('success'))
+            <?php if(session('success')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
+                <?php echo e(session('success')); ?>
+
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
-            @endif
+            <?php endif; ?>
 
             <!-- Profile Photo Section -->
             <div class="profile-avatar">
                 <div class="avatar-container">
-                    <img src="{{ asset('images/admin-avatar.jpg') }}"
+                    <img src="<?php echo e(asset('images/admin-avatar.jpg')); ?>"
                          alt="Admin Photo"
                          class="avatar-img"
                          onerror="this.src='https://ui-avatars.com/api/?name=Admin+BrownyGift&size=120&background=dc3545&color=fff'">
@@ -293,44 +294,86 @@
                 Informasi Profil
             </div>
 
-                @csrf
-                @method('PUT')
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PUT'); ?>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Nama Lengkap</label>
                         <input type="text"
-                               class="form-control @error('nama_lengkap') is-invalid @enderror"
+                               class="form-control <?php $__errorArgs = ['nama_lengkap'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                name="nama_lengkap"
-                               value="{{ old('nama_lengkap', $user->nama ?? 'Admin BrownyGift') }}"
+                               value="<?php echo e(old('nama_lengkap', $user->nama ?? 'Admin BrownyGift')); ?>"
                                required>
-                        @error('nama_lengkap')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <?php $__errorArgs = ['nama_lengkap'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Email</label>
                         <input type="email"
-                               class="form-control @error('email') is-invalid @enderror"
+                               class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                name="email"
-                               value="{{ old('email', $user->email ?? 'admin@brownygift.com') }}"
+                               value="<?php echo e(old('email', $user->email ?? 'admin@brownygift.com')); ?>"
                                required>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="col-md-12 mb-3">
                         <label class="form-label">No. Handphone</label>
                         <input type="text"
-                               class="form-control @error('no_handphone') is-invalid @enderror"
+                               class="form-control <?php $__errorArgs = ['no_handphone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                name="no_handphone"
-                               value="{{ old('no_handphone', $user->no_hp ?? '082345678910') }}"
+                               value="<?php echo e(old('no_handphone', $user->no_hp ?? '082345678910')); ?>"
                                required>
-                        @error('no_handphone')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <?php $__errorArgs = ['no_handphone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
 
@@ -349,40 +392,82 @@
                 Ganti Password
             </div>
 
-                @csrf
-                @method('PUT')
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PUT'); ?>
 
                 <div class="mb-3">
                     <label class="form-label">Password Lama</label>
                     <input type="password"
-                           class="form-control @error('password_lama') is-invalid @enderror"
+                           class="form-control <?php $__errorArgs = ['password_lama'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                            name="password_lama"
                            required>
-                    @error('password_lama')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <?php $__errorArgs = ['password_lama'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <div class="invalid-feedback"><?php echo e($message); ?></div>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Password Baru</label>
                     <input type="password"
-                           class="form-control @error('password_baru') is-invalid @enderror"
+                           class="form-control <?php $__errorArgs = ['password_baru'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                            name="password_baru"
                            required>
-                    @error('password_baru')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <?php $__errorArgs = ['password_baru'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <div class="invalid-feedback"><?php echo e($message); ?></div>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Konfirmasi Password Baru</label>
                     <input type="password"
-                           class="form-control @error('password_baru_confirmation') is-invalid @enderror"
+                           class="form-control <?php $__errorArgs = ['password_baru_confirmation'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                            name="password_baru_confirmation"
                            required>
-                    @error('password_baru_confirmation')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <?php $__errorArgs = ['password_baru_confirmation'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <div class="invalid-feedback"><?php echo e($message); ?></div>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="text-end">
@@ -414,3 +499,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/admin/profile/index.blade.php ENDPATH**/ ?>
