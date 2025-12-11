@@ -11,3 +11,19 @@ registerBtn.addEventListener("click", () => {
 loginBtn.addEventListener("click", () => {
     container.classList.remove("active");
 });
+
+function togglePass(inputId, element) {
+    const passwordInput = document.getElementById(inputId);
+    const eyeOpen = element.querySelector(".eye-open");
+    const eyeClosed = element.querySelector(".eye-closed");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeOpen.classList.remove("hidden");
+        eyeClosed.classList.add("hidden");
+    } else {
+        passwordInput.type = "password";
+        eyeOpen.classList.add("hidden");
+        eyeClosed.classList.remove("hidden");
+    }
+}
