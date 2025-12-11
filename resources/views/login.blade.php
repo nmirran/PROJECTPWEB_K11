@@ -1,74 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login BrownyGift</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #fff0f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;8
-        }
-        .login-card {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
-        .login-card h2 {
-            text-align: center;
-            color: #ff69b4;
-            margin-bottom: 30px;
-        }
-        .btn-login {
-            background-color: #ffc0cb;
-            color: #fff;
-            width: 100%;
-        }
-        .btn-login:hover {
-            background-color: #ff69b4;
-        }
-        .register-link {
-            text-align: center;
-            margin-top: 15px;
-        }
-        .register-link a {
-            color: #ff69b4;
-        }
-    </style>
+    <title>Login & Register BrownyGift</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
+
 <body>
-    <div class="login-card">
-        <h2>Login BrownyGift</h2>
 
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            {{ $errors->first() }}
+    <div class="container" id="container">
+
+        <!-- REGISTER -->
+        <div class="form-container sign-up">
+            <form action="{{ route('register.post') }}" method="POST">
+                @csrf
+
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                <input type="text" name="nama" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="no_hp" placeholder="Phone Number" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit">Sign Up</button>
+            </form>
         </div>
-        @endif
 
-        <form action="{{ url('/login') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-login">Login</button>
-        </form>
+        <!-- LOGIN -->
+        <div class="form-container sign-in">
+            <form action="{{ url('/login') }}" method="POST">
+                @csrf
+                <h1>Sign In</h1>
 
-        <div class="register-link">
-            <p>Belum punya akun? <a href="{{ url('/register') }}">Daftar</a></p>
+                <span>or use your email and password</span>
+
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <a href="#">Forgot your email or password?</a>
+
+                <button type="submit">Sign In</button>
+            </form>
         </div>
+
+        <!-- TOGGLE -->
+        <div class="toggle-container">
+            <div class="toggle">
+
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, User!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+
+            </div>
+        </div>
+
     </div>
+
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
+
 </html>

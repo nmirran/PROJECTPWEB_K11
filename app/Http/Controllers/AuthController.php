@@ -44,11 +44,6 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    public function showRegisterForm()
-    {
-        return view('register');
-    }
-
     public function register(Request $request)
     {
         $request->validate([
@@ -68,7 +63,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard.customer.index')
+        return redirect()->route('login')
             ->with('success', 'Registrasi berhasil! Selamat berbelanja!');
     }
 
