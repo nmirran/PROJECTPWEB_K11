@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/login.css')); ?>">
 </head>
 
-<body>
+<body class="wave"> <span></span> <span></span> <span></span>
 
     <div class="container" id="container">
 

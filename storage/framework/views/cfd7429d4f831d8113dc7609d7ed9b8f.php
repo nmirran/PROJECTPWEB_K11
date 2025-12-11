@@ -1,8 +1,6 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', 'BrownyGift - Buket Bunga Aesthetic & Fresh'); ?>
 
-@section('title', 'BrownyGift - Buket Bunga Aesthetic & Fresh')
-
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
     .hero-pattern {
@@ -11,11 +9,11 @@
         background-size: 20px 20px;
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
-{{-- Header / Hero --}}
+
 <header class="hero-pattern min-h-[70vh] flex items-center justify-center text-center px-4">
     <div class="max-w-3xl">
         <span class="inline-block px-4 py-1 mb-4 text-sm font-semibold tracking-widest text-pink-600 uppercase bg-pink-100 rounded-full">
@@ -28,7 +26,7 @@
             Rangkaian buket bunga segar dan aesthetic untuk wisuda, ulang tahun, hingga momen romantis bersama orang tersayang.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ url('/login') }}" class="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+            <a href="<?php echo e(url('/login')); ?>" class="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
                 Lihat Koleksi
             </a>
             <a href="#about" class="px-8 py-3 bg-white border-2 border-pink-200 text-pink-500 font-bold rounded-full hover:bg-pink-50 transition duration-300">
@@ -38,12 +36,12 @@
     </div>
 </header>
 
-{{-- Section About --}}
+
 <section id="about" class="py-20 bg-white">
     <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
-                {{-- Menggunakan gambar buket bunga dari Unsplash --}}
+                
                 <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=800" alt="About BrownyGift" class="rounded-2xl shadow-2xl">
             </div>
             <div class="md:w-1/2">
@@ -62,7 +60,7 @@
     </div>
 </section>
 
-{{-- Section Services --}}
+
 <section id="services" class="py-20 bg-pink-50">
     <div class="container mx-auto px-6">
         <div class="text-center mb-16">
@@ -96,39 +94,41 @@
     </div>
 </section>
 
-{{-- Section Products --}}
+
 <section id="products" class="py-20 bg-white">
     <div class="container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Koleksi Buket Terpopuler</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            @php
+            <?php
             $items = [
             ['name' => 'Rose Romance', 'desc' => 'Buket mawar merah premium simbol cinta sejati.', 'price' => 'Rp 150.000'],
             ['name' => 'Sunflower Joy', 'desc' => 'Bunga matahari cerah untuk menyemangati hari.', 'price' => 'Rp 125.000'],
             ['name' => 'Tulip Pastel', 'desc' => 'Rangkaian tulip warna pastel yang sangat elegan.', 'price' => 'Rp 210.000'],
             ['name' => 'Graduation Mix', 'desc' => 'Kombinasi bunga mix khusus hadiah wisuda.', 'price' => 'Rp 175.000']
             ];
-            @endphp
+            ?>
 
-            @foreach ($items as $item)
+            <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                 <div class="relative overflow-hidden">
-                    <img src="https://via.placeholder.com/400x300/fdf2f8/ec4899?text={{ str_replace(' ', '+', $item['name']) }}" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                    <img src="https://via.placeholder.com/400x300/fdf2f8/ec4899?text=<?php echo e(str_replace(' ', '+', $item['name'])); ?>" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-pink-600 font-bold text-sm">
-                        {{ $item['price'] }}
+                        <?php echo e($item['price']); ?>
+
                     </div>
                 </div>
                 <div class="p-6">
-                    <h5 class="text-xl font-bold text-gray-800 mb-2">{{ $item['name'] }}</h5>
-                    <p class="text-gray-500 text-sm mb-4">{{ $item['desc'] }}</p>
+                    <h5 class="text-xl font-bold text-gray-800 mb-2"><?php echo e($item['name']); ?></h5>
+                    <p class="text-gray-500 text-sm mb-4"><?php echo e($item['desc']); ?></p>
                     <button class="w-full py-2 bg-gray-50 hover:bg-pink-500 hover:text-white text-pink-500 font-semibold rounded-lg transition">
                         Tambah ke Keranjang
                     </button>
                 </div>
             </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/landing.blade.php ENDPATH**/ ?>
