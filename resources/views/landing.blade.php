@@ -43,7 +43,6 @@
     <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
-                {{-- Menggunakan gambar buket bunga dari Unsplash --}}
                 <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=800" alt="About BrownyGift" class="rounded-2xl shadow-2xl">
             </div>
             <div class="md:w-1/2">
@@ -103,17 +102,17 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @php
             $items = [
-            ['name' => 'Rose Romance', 'desc' => 'Buket mawar merah premium simbol cinta sejati.', 'price' => 'Rp 150.000'],
-            ['name' => 'Sunflower Joy', 'desc' => 'Bunga matahari cerah untuk menyemangati hari.', 'price' => 'Rp 125.000'],
-            ['name' => 'Tulip Pastel', 'desc' => 'Rangkaian tulip warna pastel yang sangat elegan.', 'price' => 'Rp 210.000'],
-            ['name' => 'Graduation Mix', 'desc' => 'Kombinasi bunga mix khusus hadiah wisuda.', 'price' => 'Rp 175.000']
+            ['name' => 'Rose Romance', 'desc' => 'Buket mawar merah premium simbol cinta sejati.', 'price' => 'Rp 150.000', 'image_url' => 'https://i.pinimg.com/736x/5f/13/81/5f1381af806b693a9864893b1c2961ba.jpg'],
+            ['name' => 'Sunflower Joy', 'desc' => 'Bunga matahari cerah untuk menyemangati hari.', 'price' => 'Rp 125.000', 'image_url' => 'https://threebouquets.com/cdn/shop/files/product-sunflower_800x.jpg?v=1708408842'],
+            ['name' => 'Tulip Pastel', 'desc' => 'Rangkaian tulip warna pastel yang sangat elegan.', 'price' => 'Rp 210.000', 'image_url' => 'https://i.pinimg.com/736x/af/e6/95/afe6957e27cc1dfffd73496787513567.jpg'],
+            ['name' => 'Graduation Mix', 'desc' => 'Kombinasi bunga mix khusus hadiah wisuda.', 'price' => 'Rp 175.000', 'image_url' => 'http://i.pinimg.com/1200x/99/6c/bb/996cbb224925eb92b38c57c0fadd8ba9.jpg']
             ];
             @endphp
 
             @foreach ($items as $item)
             <div class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                 <div class="relative overflow-hidden">
-                    <img src="https://via.placeholder.com/400x300/fdf2f8/ec4899?text={{ str_replace(' ', '+', $item['name']) }}" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                    <img src="{{ $item['image_url'] }}" alt="Buket {{ $item['name'] }}" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-pink-600 font-bold text-sm">
                         {{ $item['price'] }}
                     </div>
@@ -121,9 +120,6 @@
                 <div class="p-6">
                     <h5 class="text-xl font-bold text-gray-800 mb-2">{{ $item['name'] }}</h5>
                     <p class="text-gray-500 text-sm mb-4">{{ $item['desc'] }}</p>
-                    <button class="w-full py-2 bg-gray-50 hover:bg-pink-500 hover:text-white text-pink-500 font-semibold rounded-lg transition">
-                        Tambah ke Keranjang
-                    </button>
                 </div>
             </div>
             @endforeach
