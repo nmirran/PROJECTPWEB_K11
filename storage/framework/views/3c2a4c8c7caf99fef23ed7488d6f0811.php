@@ -1,8 +1,6 @@
-@extends('layouts.owner')
+<?php $__env->startSection('title', 'Dashboard Owner'); ?>
 
-@section('title', 'Dashboard Owner')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="text-center mb-10">
     <h1 class="text-4xl font-bold text-gray-800">Selamat Datang, Owner!</h1>
@@ -28,4 +26,6 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.owner', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\COOLYEAHH!!\SMT 3\PROJECTPWEB_K11\resources\views/dashboard/owner/index.blade.php ENDPATH**/ ?>

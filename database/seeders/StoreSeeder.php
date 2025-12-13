@@ -13,12 +13,12 @@ class StoreSeeder extends Seeder
      */
     public function run(): void
     {
-        Store::truncate(); // kosongkan dulu biar tidak duplikat
+        Store::truncate();
 
         Store::create([
-            'nama_toko' => 'BrownyGift',
-            'deskripsi' => 'Toko kado, hampers, dan bouquet yang menyediakan berbagai pilihan hadiah spesial.',
-            'status'    => 'buka',
+            'nama_toko'    => 'BrownyGift',
+            'deskripsi'    => 'Rangkaian buket bunga segar dan aesthetic untuk wisuda, ulang tahun, hingga momen romantis.',
+            'tentang_kami' => 'BrownyGift berawal dari kecintaan kami pada keindahan bunga. Kami percaya setiap tangkai bunga memiliki makna mendalam untuk setiap perasaan yang ingin disampaikan.',
         ]);
     }
 }
