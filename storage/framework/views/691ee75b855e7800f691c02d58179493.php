@@ -61,7 +61,7 @@
 
         <!-- Sidebar Footer -->
         <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-pink-100">
-            <a href="{{ url('/logout') }}" class="text-primary hover:text-primary-dark flex items-center font-medium" onclick="return confirm('Yakin logout?')">
+            <a href="<?php echo e(url('/logout')); ?>" class="text-primary hover:text-primary-dark flex items-center font-medium" onclick="return confirm('Yakin logout?')">
                 <i class="bi bi-box-arrow-left mr-2"></i>
                 <span>Keluar</span>
             </a>
@@ -77,19 +77,19 @@
         </div>
 
         <!-- Alert Notification -->
-        @if(isset($pendingOrders) && $pendingOrders > 0)
+        <?php if(isset($pendingOrders) && $pendingOrders > 0): ?>
         <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r mb-8">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <i class="bi bi-exclamation-triangle-fill text-yellow-500 text-xl mr-3"></i>
-                    <span class="text-yellow-800 font-medium">{{ $pendingOrders }} pesanan menunggu konfirmasi pembayaran</span>
+                    <span class="text-yellow-800 font-medium"><?php echo e($pendingOrders); ?> pesanan menunggu konfirmasi pembayaran</span>
                 </div>
                 <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                     Lihat Pesanan
                 </a>
             </div>
         </div>
-        @endif
+        <?php endif; ?>
 
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -101,7 +101,7 @@
                         <i class="bi bi-bag text-primary text-xl"></i>
                     </div>
                 </div>
-                <h3 class="text-3xl font-bold text-gray-900">{{ $totalOrders ?? 0 }}</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($totalOrders ?? 0); ?></h3>
             </div>
 
             <!-- Sedang Diproses -->
@@ -112,7 +112,7 @@
                         <i class="bi bi-arrow-repeat text-blue-500 text-xl"></i>
                     </div>
                 </div>
-                <h3 class="text-3xl font-bold text-gray-900">{{ $processingOrders ?? 0 }}</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($processingOrders ?? 0); ?></h3>
             </div>
 
             <!-- Dalam Pengiriman -->
@@ -123,7 +123,7 @@
                         <i class="bi bi-truck text-yellow-500 text-xl"></i>
                     </div>
                 </div>
-                <h3 class="text-3xl font-bold text-gray-900">{{ $shippingOrders ?? 0 }}</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($shippingOrders ?? 0); ?></h3>
             </div>
 
             <!-- Selesai -->
@@ -134,7 +134,7 @@
                         <i class="bi bi-check-circle text-green-500 text-xl"></i>
                     </div>
                 </div>
-                <h3 class="text-3xl font-bold text-gray-900">{{ $completedOrders ?? 0 }}</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($completedOrders ?? 0); ?></h3>
             </div>
         </div>
 
@@ -156,11 +156,11 @@
                 </div>
                 <h5 class="text-lg font-semibold text-gray-900 mb-2">Pesanan</h5>
                 <p class="text-gray-500 text-sm mb-3">Kelola dan proses pesanan</p>
-                @if(isset($pendingOrders) && $pendingOrders > 0)
+                <?php if(isset($pendingOrders) && $pendingOrders > 0): ?>
                 <span class="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">
-                    {{ $pendingOrders }} menunggu
+                    <?php echo e($pendingOrders); ?> menunggu
                 </span>
-                @endif
+                <?php endif; ?>
             </a>
 
             <!-- Laporan -->
@@ -181,29 +181,30 @@
             </h5>
 
             <div class="space-y-4">
-                @forelse($activities ?? [] as $activity)
+                <?php $__empty_1 = true; $__currentLoopData = $activities ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $activity): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="flex items-start p-4 rounded-lg hover:bg-pink-50 transition-colors">
                     <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0
-                        @if($activity->icon_color == 'success') bg-green-100 text-green-600
-                        @elseif($activity->icon_color == 'info') bg-blue-100 text-blue-600
-                        @elseif($activity->icon_color == 'warning') bg-yellow-100 text-yellow-600
-                        @else bg-pink-100 text-primary
-                        @endif">
-                        <i class="{{ $activity->icon }} text-lg"></i>
+                        <?php if($activity->icon_color == 'success'): ?> bg-green-100 text-green-600
+                        <?php elseif($activity->icon_color == 'info'): ?> bg-blue-100 text-blue-600
+                        <?php elseif($activity->icon_color == 'warning'): ?> bg-yellow-100 text-yellow-600
+                        <?php else: ?> bg-pink-100 text-primary
+                        <?php endif; ?>">
+                        <i class="<?php echo e($activity->icon); ?> text-lg"></i>
                     </div>
                     <div class="flex-1">
-                        <p class="text-gray-900 font-medium text-sm">{{ $activity->description }}</p>
-                        <small class="text-gray-500 text-xs">{{ $activity->time_ago }}</small>
+                        <p class="text-gray-900 font-medium text-sm"><?php echo e($activity->description); ?></p>
+                        <small class="text-gray-500 text-xs"><?php echo e($activity->time_ago); ?></small>
                     </div>
                 </div>
-                @empty
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <div class="text-center py-12 text-gray-400">
                     <i class="bi bi-inbox text-5xl mb-4 block opacity-30"></i>
                     <p>Belum ada aktivitas terbaru</p>
                 </div>
-                @endforelse
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </body>
 </html>
+<?php /**PATH D:\COLLEGE LIFE\SEMESTER 3\PEMROGRAMAN WEBSITE\PROJECT\PROJECTPWEB_K11\resources\views/dashboard/admin/index.blade.php ENDPATH**/ ?>

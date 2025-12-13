@@ -3,339 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Admin</title>
+    <title>Profil Admin - BrownyGift</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff69b4',
+                        'primary-dark': '#ff1493',
+                        'primary-light': '#ffb6c1',
+                        'pink-50': '#fff0f5',
+                        'pink-100': '#ffe4e8',
+                    }
+                }
+            }
         }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background: white;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-            z-index: 1000;
-        }
-
-        .sidebar-header {
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .sidebar-header h5 {
-            color: #dc3545;
-            margin-bottom: 0.25rem;
-            font-weight: 600;
-        }
-
-        .sidebar-header small {
-            color: #6c757d;
-            font-size: 0.875rem;
-        }
-
-        .sidebar-nav {
-            padding: 1rem 0;
-        }
-
-        .nav-link {
-            color: #495057;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-link:hover {
-            background-color: #f8f9fa;
-            color: #dc3545;
-        }
-
-        .nav-link.active {
-            background-color: #fff5f5;
-            color: #dc3545;
-            border-left-color: #dc3545;
-            font-weight: 500;
-        }
-
-        .nav-link i {
-            margin-right: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        .sidebar-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .main-content {
-            margin-left: 250px;
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        .profile-card {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .profile-header {
-            margin-bottom: 2rem;
-        }
-
-        .profile-header h4 {
-            color: #212529;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-header p {
-            color: #6c757d;
-            margin-bottom: 0;
-        }
-
-        .profile-section-title {
-            color: #dc3545;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .profile-section-title i {
-            margin-right: 0.5rem;
-        }
-
-        .profile-avatar {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .avatar-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .avatar-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #f0f0f0;
-        }
-
-        .admin-info {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .admin-info h5 {
-            color: #212529;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .admin-info p {
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-
-        .role-badge {
-            display: inline-block;
-            background-color: #fff0f2;
-            color: #dc3545;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .form-label {
-            font-weight: 500;
-            color: #495057;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .form-control {
-            border: 1px solid #dee2e6;
-            border-radius: 0.375rem;
-            padding: 0.625rem 0.875rem;
-            font-size: 0.875rem;
-        }
-
-        .form-control:focus {
-            border-color: #dc3545;
-            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
-        }
-
-        .form-control:disabled {
-            background-color: #f8f9fa;
-        }
-
-        .btn-update {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 0.625rem 2rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: 0.875rem;
-        }
-
-        .btn-update:hover {
-            background-color: #c82333;
-            color: white;
-        }
-
-        .divider {
-            border: 0;
-            border-top: 1px solid #f0f0f0;
-            margin: 2rem 0;
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-pink-50 font-sans">
     <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h5>BrownyGift</h5>
-            <small>Admin</small>
+    <div class="fixed top-0 left-0 h-screen w-64 bg-white shadow-sm z-50">
+        <!-- Sidebar Header -->
+        <div class="p-6 border-b border-pink-100">
+            <h5 class="text-primary font-semibold text-xl mb-1">BrownyGift</h5>
+            <small class="text-gray-500 text-sm">Admin</small>
         </div>
 
-        <nav class="sidebar-nav">
-            <a href="{{ route('dashboard') }}" class="nav-link">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
+        <!-- Sidebar Navigation -->
+        <nav class="py-4">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-speedometer2 text-lg mr-3"></i>
+                <span>Dashboard</span>
             </a>
-            <a href="{{ route('profile.index') }}" class="nav-link active">
-                <i class="bi bi-person"></i>
-                Profil
+            <a href="{{ route('admin.profile.index') }}" class="flex items-center px-6 py-3 bg-pink-50 text-primary font-medium border-l-4 border-primary">
+                <i class="bi bi-person text-lg mr-3"></i>
+                <span>Profil</span>
             </a>
-            <a href="{{ route('produk.index') }}" class="nav-link">
-                <i class="bi bi-box-seam"></i>
-                Produk
+            <a href="{{ route('admin.produk.index') }}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-box-seam text-lg mr-3"></i>
+                <span>Produk</span>
             </a>
-            <a href="#" class="nav-link">
-                <i class="bi bi-receipt"></i>
-                Pesanan
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-receipt text-lg mr-3"></i>
+                <span>Pesanan</span>
             </a>
-            <a href="#" class="nav-link">
-                <i class="bi bi-file-earmark-text"></i>
-                Laporan
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-file-earmark-text text-lg mr-3"></i>
+                <span>Laporan</span>
             </a>
         </nav>
 
-        <div class="sidebar-footer">
-            <a href="{{ route('logout') }}" class="text-danger text-decoration-none">
-                <i class="bi bi-box-arrow-left me-2"></i> Keluar
+        <!-- Sidebar Footer -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-pink-100">
+            <a href="{{ route('logout') }}" class="text-primary hover:text-primary-dark flex items-center font-medium">
+                <i class="bi bi-box-arrow-left mr-2"></i>
+                <span>Keluar</span>
             </a>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <!-- Profile Header -->
-        <div class="profile-card">
-            <div class="profile-header">
-                <h4>Profil Saya</h4>
-                <p>Kelola informasi profil Anda</p>
+    <div class="ml-64 p-8 min-h-screen">
+        <!-- Profile Header Card -->
+        <div class="bg-white rounded-lg shadow-sm p-8 mb-6">
+            <div class="mb-6">
+                <h4 class="text-2xl font-semibold text-gray-900 mb-2">Profil Saya</h4>
+                <p class="text-gray-500">Kelola informasi profil Anda</p>
             </div>
 
             <!-- Success Message -->
             @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6 rounded-r">
+                <div class="flex items-center justify-between">
+                    <p class="text-green-700">{{ session('success') }}</p>
+                    <button type="button" class="text-green-700 hover:text-green-900" onclick="this.parentElement.parentElement.remove()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
             </div>
             @endif
 
-            <!-- Profile Photo Section -->
-            <div class="profile-avatar">
-                <div class="avatar-container">
+            <!-- Profile Avatar Section -->
+            <div class="text-center">
+                <div class="inline-block relative">
                     <img src="{{ asset('images/admin-avatar.jpg') }}"
                          alt="Admin Photo"
-                         class="avatar-img"
-                         onerror="this.src='https://ui-avatars.com/api/?name=Admin+BrownyGift&size=120&background=dc3545&color=fff'">
+                         class="w-32 h-32 rounded-full object-cover border-4 border-pink-100"
+                         onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($user->nama ?? 'Admin BrownyGift') }}&size=128&background=ff69b4&color=fff'">
                 </div>
-                <div class="admin-info">
-                    <h5>Admin BrownyGift</h5>
-                    <p class="mb-2">admin@brownygift.com</p>
-                    <span class="role-badge">Admin</span>
+                <div class="mt-4">
+                    <h5 class="text-lg font-semibold text-gray-900 mb-1">{{ $user->nama ?? 'Admin BrownyGift' }}</h5>
+                    <p class="text-gray-600 mb-2">{{ $user->email ?? 'admin@brownygift.com' }}</p>
+                    <span class="inline-block bg-pink-100 text-primary px-4 py-1.5 rounded-full text-xs font-medium">Admin</span>
                 </div>
             </div>
         </div>
 
         <!-- Information Profile Section -->
-        <div class="profile-card">
-            <div class="profile-section-title">
-                <i class="bi bi-person-circle"></i>
-                Informasi Profil
+        <div class="bg-white rounded-lg shadow-sm p-8 mb-6">
+            <div class="flex items-center text-primary font-semibold mb-6">
+                <i class="bi bi-person-circle text-lg mr-2"></i>
+                <span class="text-sm uppercase tracking-wider">Informasi Profil</span>
             </div>
 
+            <form action="{{ route('admin.profile.update') }}" method="POST">
                 @csrf
                 @method('PUT')
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Nama Lengkap</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Nama Lengkap -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
                         <input type="text"
-                               class="form-control @error('nama_lengkap') is-invalid @enderror"
+                               class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('nama_lengkap') border-red-500 @enderror"
                                name="nama_lengkap"
                                value="{{ old('nama_lengkap', $user->nama ?? 'Admin BrownyGift') }}"
                                required>
                         @error('nama_lengkap')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Email</label>
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                         <input type="email"
-                               class="form-control @error('email') is-invalid @enderror"
+                               class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('email') border-red-500 @enderror"
                                name="email"
                                value="{{ old('email', $user->email ?? 'admin@brownygift.com') }}"
                                required>
                         @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-                        <label class="form-label">No. Handphone</label>
-                        <input type="text"
-                               class="form-control @error('no_handphone') is-invalid @enderror"
-                               name="no_handphone"
-                               value="{{ old('no_handphone', $user->no_hp ?? '082345678910') }}"
-                               required>
-                        @error('no_handphone')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
 
-                <div class="text-end">
-                    <button type="submit" class="btn-update">
+                <!-- No Handphone -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">No. Handphone</label>
+                    <input type="text"
+                           class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('no_handphone') border-red-500 @enderror"
+                           name="no_handphone"
+                           value="{{ old('no_handphone', $user->no_hp ?? '082345678910') }}"
+                           required>
+                    @error('no_handphone')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-8 py-2.5 rounded-lg font-medium transition-all shadow-sm hover:shadow">
                         Simpan Perubahan
                     </button>
                 </div>
@@ -343,74 +166,59 @@
         </div>
 
         <!-- Change Password Section -->
-        <div class="profile-card">
-            <div class="profile-section-title">
-                <i class="bi bi-lock"></i>
-                Ganti Password
+        <div class="bg-white rounded-lg shadow-sm p-8">
+            <div class="flex items-center text-primary font-semibold mb-6">
+                <i class="bi bi-lock text-lg mr-2"></i>
+                <span class="text-sm uppercase tracking-wider">Ganti Password</span>
             </div>
 
+            <form action="{{ route('admin.profile.password') }}" method="POST">
                 @csrf
                 @method('PUT')
 
-                <div class="mb-3">
-                    <label class="form-label">Password Lama</label>
+                <!-- Password Lama -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password Lama</label>
                     <input type="password"
-                           class="form-control @error('password_lama') is-invalid @enderror"
+                           class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('password_lama') border-red-500 @enderror"
                            name="password_lama"
                            required>
                     @error('password_lama')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Password Baru</label>
+                <!-- Password Baru -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password Baru</label>
                     <input type="password"
-                           class="form-control @error('password_baru') is-invalid @enderror"
+                           class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('password_baru') border-red-500 @enderror"
                            name="password_baru"
                            required>
                     @error('password_baru')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Konfirmasi Password Baru</label>
+                <!-- Konfirmasi Password Baru -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Password Baru</label>
                     <input type="password"
-                           class="form-control @error('password_baru_confirmation') is-invalid @enderror"
+                           class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('password_baru_confirmation') border-red-500 @enderror"
                            name="password_baru_confirmation"
                            required>
                     @error('password_baru_confirmation')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="text-end">
-                    <button type="submit" class="btn-update">
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-8 py-2.5 rounded-lg font-medium transition-all shadow-sm hover:shadow">
                         Ganti Password
                     </button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        // Photo Preview
-        document.getElementById('photoInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('photoPreview');
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 </body>
 </html>

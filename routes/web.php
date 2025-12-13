@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileAdminController;
 
 // LANDING PAGE & AUTHENTICATION
 Route::get('/', [HomeController::class, 'index'])->name('landing');
@@ -22,8 +23,14 @@ Route::middleware(['auth'])
     ->group(function () {
         Route::get('/', fn() => view('dashboard.admin.index'))->name('dashboard');
         Route::get('/produk', [ProductController::class, 'index'])->name('produk.index');
-        Route::get('/produk/create', fn() => view('admin.produk.create'))->name('produk.create');
-        Route::get('/profile', fn() => view('admin.profile.index'))->name('profile.index');
+        Route::get('/produk/create', [ProductController::class, 'create'])->name('produk.create');
+        Route::post('/produk/create', [ProductController::class, 'store'])->name('produk.store');
+        Route::get('/produk/edit/{id}', [ProductController::class, 'edit'])->name('produk.edit');
+        Route::put('/produk/edit/{id}', [ProductController::class, 'update'])->name('produk.update');
+        Route::delete('/produk/hapus/{id}', [ProductController::class, 'destroy'])->name('produk.delete');
+        Route::get('/profile', [ProfileAdminController::class, 'index'])->name('profile.index');
+        Route::put('/profile', [ProfileAdminController::class, 'update'])->name('profile.update');
+        Route::put('/profile/password', [ProfileAdminController::class, 'updatePassword'])->name('profile.password');
     });
 
 // OWNER DASHBOARD

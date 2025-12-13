@@ -35,15 +35,15 @@
 
         <!-- Sidebar Navigation -->
         <nav class="py-4">
-            <a href="{{ route('admin.dashboard')}}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+            <a href="<?php echo e(route('admin.dashboard')); ?>" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
                 <i class="bi bi-speedometer2 text-lg mr-3"></i>
                 <span>Dashboard</span>
             </a>
-            <a href="{{route('admin.profile.index')}}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+            <a href="<?php echo e(route('admin.profile.index')); ?>" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
                 <i class="bi bi-person text-lg mr-3"></i>
                 <span>Profil</span>
             </a>
-            <a href="{{ route('admin.produk.index') }}" class="flex items-center px-6 py-3 bg-pink-50 text-primary font-medium border-l-4 border-primary">
+            <a href="<?php echo e(route('admin.produk.index')); ?>" class="flex items-center px-6 py-3 bg-pink-50 text-primary font-medium border-l-4 border-primary">
                 <i class="bi bi-box-seam text-lg mr-3"></i>
                 <span>Produk</span>
             </a>
@@ -59,7 +59,7 @@
 
         <!-- Sidebar Footer -->
         <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-pink-200">
-            <a href="{{ route('logout') }}" class="text-primary hover:text-primary-dark flex items-center font-medium">
+            <a href="<?php echo e(route('logout')); ?>" class="text-primary hover:text-primary-dark flex items-center font-medium">
                 <i class="bi bi-box-arrow-left mr-2"></i>
                 <span>Keluar</span>
             </a>
@@ -70,27 +70,27 @@
     <div class="ml-64 p-8 min-h-screen">
         <div class="bg-white rounded-lg shadow-sm p-8">
             <!-- Success/Error Messages -->
-            @if(session('success'))
+            <?php if(session('success')): ?>
             <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6 rounded-r" role="alert">
                 <div class="flex items-center justify-between">
-                    <p class="text-green-700">{{ session('success') }}</p>
+                    <p class="text-green-700"><?php echo e(session('success')); ?></p>
                     <button type="button" class="text-green-700 hover:text-green-900" onclick="this.parentElement.parentElement.remove()">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
 
-            @if(session('error'))
+            <?php if(session('error')): ?>
             <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded-r" role="alert">
                 <div class="flex items-center justify-between">
-                    <p class="text-red-700">{{ session('error') }}</p>
+                    <p class="text-red-700"><?php echo e(session('error')); ?></p>
                     <button type="button" class="text-red-700 hover:text-red-900" onclick="this.parentElement.parentElement.remove()">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
 
             <!-- Header -->
             <div class="flex justify-between items-start mb-8">
@@ -98,7 +98,7 @@
                     <h4 class="text-gray-900 font-semibold text-2xl mb-2">Kelola Produk</h4>
                     <p class="text-gray-500">Daftar semua produk buket bunga</p>
                 </div>
-                <a href="{{ route('admin.produk.create') }}" class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-md font-medium transition-all inline-flex items-center shadow-sm hover:shadow-md">
+                <a href="<?php echo e(route('admin.produk.create')); ?>" class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-md font-medium transition-all inline-flex items-center shadow-sm hover:shadow-md">
                     <i class="bi bi-plus-circle mr-2"></i>
                     Tambah Produk
                 </a>
@@ -119,31 +119,33 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-pink-100">
-                        @forelse($products as $product)
+                        <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr class="hover:bg-pink-50 transition-colors">
                             <td class="px-4 py-4">
-                                <img src="{{ asset('images/' . $product->gambar_produk) }}"
-                                     alt="{{ $product->nama_produk }}"
+                                <img src="<?php echo e(asset('images/' . $product->gambar_produk)); ?>"
+                                     alt="<?php echo e($product->nama_produk); ?>"
                                      class="w-12 h-12 object-cover rounded-lg border-2 border-pink-200"
                                      onerror="this.src='https://via.placeholder.com/50/ff69b4/ffffff'">
                             </td>
-                            <td class="px-4 py-4 text-gray-900 font-medium">{{ $product->nama_produk }}</td>
+                            <td class="px-4 py-4 text-gray-900 font-medium"><?php echo e($product->nama_produk); ?></td>
                             <td class="px-4 py-4">
                                 <span class="bg-pink-100 text-primary px-3 py-1.5 rounded-full text-xs font-medium">
-                                    {{ $product->kategori->nama_kategori ?? 'N/A' }}
+                                    <?php echo e($product->kategori->nama_kategori ?? 'N/A'); ?>
+
                                 </span>
                             </td>
                             <td class="px-4 py-4">
-                                <span class="block max-w-xs truncate text-gray-600 text-sm" title="{{ $product->deskripsi_produk }}">
-                                    {{ $product->deskripsi_produk ?? '-' }}
+                                <span class="block max-w-xs truncate text-gray-600 text-sm" title="<?php echo e($product->deskripsi_produk); ?>">
+                                    <?php echo e($product->deskripsi_produk ?? '-'); ?>
+
                                 </span>
                             </td>
-                            <td class="px-4 py-4 text-gray-900 font-medium">Rp {{ number_format($product->harga_produk, 0, ',', '.') }}</td>
-                            <td class="px-4 py-4 text-gray-900">{{ $product->stok_produk }}</td>
+                            <td class="px-4 py-4 text-gray-900 font-medium">Rp <?php echo e(number_format($product->harga_produk, 0, ',', '.')); ?></td>
+                            <td class="px-4 py-4 text-gray-900"><?php echo e($product->stok_produk); ?></td>
                             <td class="px-4 py-4">
                                 <div class="flex gap-2">
                                     <!-- Edit Button -->
-                                    <a href="{{route('admin.produk.edit', $product->id_produk)}}"
+                                    <a href="<?php echo e(route('admin.produk.edit', $product->id_produk)); ?>"
                                        class="bg-primary-light hover:bg-primary text-white px-3 py-1.5 rounded-md text-sm transition-all inline-flex items-center shadow-sm hover:shadow"
                                        title="Edit">
                                         <i class="bi bi-pencil-square"></i>
@@ -152,38 +154,38 @@
                                     <!-- Delete Button -->
                                     <button type="button"
                                             class="bg-primary hover:bg-primary-dark text-white px-3 py-1.5 rounded-md text-sm transition-all inline-flex items-center shadow-sm hover:shadow"
-                                            onclick="document.getElementById('deleteModal{{ $product->id_produk }}').classList.remove('hidden')"
+                                            onclick="document.getElementById('deleteModal<?php echo e($product->id_produk); ?>').classList.remove('hidden')"
                                             title="Hapus">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </div>
 
                                 <!-- Delete Modal -->
-                                <div id="deleteModal{{ $product->id_produk }}" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+                                <div id="deleteModal<?php echo e($product->id_produk); ?>" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 overflow-y-auto h-full w-full z-50">
                                     <div class="relative top-20 mx-auto p-5 border border-pink-200 w-96 shadow-xl rounded-xl bg-white">
                                         <div class="flex justify-between items-center pb-3 border-b border-pink-100">
                                             <h5 class="text-lg font-semibold text-gray-900">Konfirmasi Hapus</h5>
                                             <button type="button"
                                                     class="text-gray-400 hover:text-gray-600 transition-colors"
-                                                    onclick="document.getElementById('deleteModal{{ $product->id_produk }}').classList.add('hidden')">
+                                                    onclick="document.getElementById('deleteModal<?php echo e($product->id_produk); ?>').classList.add('hidden')">
                                                 <i class="bi bi-x-lg"></i>
                                             </button>
                                         </div>
                                         <div class="py-4">
                                             <p class="text-gray-600 mb-2">Yakin ingin menghapus produk ini?</p>
-                                            <strong class="text-gray-900">{{ $product->nama_produk }}</strong>
+                                            <strong class="text-gray-900"><?php echo e($product->nama_produk); ?></strong>
                                         </div>
                                         <div class="flex justify-end gap-2 pt-3 border-t border-pink-100">
                                             <button type="button"
                                                     class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-md transition-colors font-medium"
-                                                    onclick="document.getElementById('deleteModal{{ $product->id_produk }}').classList.add('hidden')">
+                                                    onclick="document.getElementById('deleteModal<?php echo e($product->id_produk); ?>').classList.add('hidden')">
                                                 Batal
                                             </button>
-                                            <form action="{{route('admin.produk.delete', $product->id_produk)}}"
+                                            <form action="<?php echo e(route('admin.produk.delete', $product->id_produk)); ?>"
                                                   method="POST"
                                                   class="inline">
-                                                @csrf
-                                                @method('DELETE')
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md transition-all shadow-sm hover:shadow font-medium">
                                                     Hapus
                                                 </button>
@@ -193,24 +195,26 @@
                                 </div>
                             </td>
                         </tr>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
                             <td colspan="7" class="px-4 py-8 text-center text-gray-500">
-                                Belum ada produk. <a href="{{ route('admin.produk.create') }}" class="text-primary hover:text-primary-dark hover:underline font-medium">Tambah produk pertama</a>
+                                Belum ada produk. <a href="<?php echo e(route('admin.produk.create')); ?>" class="text-primary hover:text-primary-dark hover:underline font-medium">Tambah produk pertama</a>
                             </td>
                         </tr>
-                        @endforelse
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
 
             <!-- Pagination -->
-            @if(isset($products) && $products->hasPages())
+            <?php if(isset($products) && $products->hasPages()): ?>
             <div class="flex justify-center mt-6">
-                {{ $products->links() }}
+                <?php echo e($products->links()); ?>
+
             </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </body>
 </html>
+<?php /**PATH D:\COLLEGE LIFE\SEMESTER 3\PEMROGRAMAN WEBSITE\PROJECT\PROJECTPWEB_K11\resources\views/admin/produk/index.blade.php ENDPATH**/ ?>

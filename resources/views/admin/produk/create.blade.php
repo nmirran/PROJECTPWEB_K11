@@ -5,278 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Produk - BrownyGift</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff69b4',
+                        'primary-dark': '#ff1493',
+                        'primary-light': '#ffb6c1',
+                        'pink-50': '#fff0f5',
+                        'pink-100': '#ffe4e8',
+                    }
+                }
+            }
         }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background: white;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-            z-index: 1000;
-        }
-
-        .sidebar-header {
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .sidebar-header h5 {
-            color: #dc3545;
-            margin-bottom: 0.25rem;
-            font-weight: 600;
-        }
-
-        .sidebar-header small {
-            color: #6c757d;
-            font-size: 0.875rem;
-        }
-
-        .sidebar-nav {
-            padding: 1rem 0;
-        }
-
-        .nav-link {
-            color: #495057;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-link:hover {
-            background-color: #f8f9fa;
-            color: #dc3545;
-        }
-
-        .nav-link.active {
-            background-color: #fff5f5;
-            color: #dc3545;
-            border-left-color: #dc3545;
-            font-weight: 500;
-        }
-
-        .nav-link i {
-            margin-right: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        .sidebar-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .main-content {
-            margin-left: 250px;
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        .content-card {
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 2rem;
-            max-width: 800px;
-        }
-
-        .btn-back {
-            color: #6c757d;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .btn-back:hover {
-            color: #dc3545;
-        }
-
-        .btn-back i {
-            margin-right: 0.5rem;
-        }
-
-        .form-label {
-            font-weight: 500;
-            color: #495057;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-control, .form-select {
-            border: 1px solid #dee2e6;
-            border-radius: 0.375rem;
-            padding: 0.625rem 0.875rem;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: #dc3545;
-            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
-        }
-
-        .btn-submit {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 0.625rem 2rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .btn-submit:hover {
-            background-color: #c82333;
-            color: white;
-        }
-
-        .btn-cancel {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            padding: 0.625rem 2rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .btn-cancel:hover {
-            background-color: #5a6268;
-            color: white;
-        }
-
-        .image-preview {
-            width: 150px;
-            height: 150px;
-            border: 2px dashed #dee2e6;
-            border-radius: 0.375rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 0.5rem;
-            overflow: hidden;
-        }
-
-        .image-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-preview-placeholder {
-            color: #adb5bd;
-            text-align: center;
-            padding: 1rem;
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-pink-50 font-sans">
     <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h5>BrownyGift</h5>
-            <small>Admin</small>
+    <div class="fixed top-0 left-0 h-screen w-64 bg-white shadow-sm z-50">
+        <!-- Sidebar Header -->
+        <div class="p-6 border-b border-pink-100">
+            <h5 class="text-primary font-semibold text-xl mb-1">BrownyGift</h5>
+            <small class="text-gray-500 text-sm">Admin</small>
         </div>
 
-        <nav class="sidebar-nav">
-            <a href="{{ route('dashboard') }}" class="nav-link">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
+        <!-- Sidebar Navigation -->
+        <nav class="py-4">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-speedometer2 text-lg mr-3"></i>
+                <span>Dashboard</span>
             </a>
-            <a href="#" class="nav-link">
-                <i class="bi bi-person"></i>
-                Profil
+            <a href="{{ route('admin.profile.index') }}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-person text-lg mr-3"></i>
+                <span>Profil</span>
             </a>
-            <a href="{{ route('produk.index') }}" class="nav-link active">
-                <i class="bi bi-box-seam"></i>
-                Produk
+            <a href="{{ route('admin.produk.index') }}" class="flex items-center px-6 py-3 bg-pink-50 text-primary font-medium border-l-4 border-primary">
+                <i class="bi bi-box-seam text-lg mr-3"></i>
+                <span>Produk</span>
             </a>
-            <a href="#" class="nav-link">
-                <i class="bi bi-receipt"></i>
-                Pesanan
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-receipt text-lg mr-3"></i>
+                <span>Pesanan</span>
             </a>
-            <a href="#" class="nav-link">
-                <i class="bi bi-file-earmark-text"></i>
-                Laporan
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-file-earmark-text text-lg mr-3"></i>
+                <span>Laporan</span>
             </a>
         </nav>
 
-        <div class="sidebar-footer">
-            <a href="{{ route('logout') }}" class="text-danger text-decoration-none">
-                <i class="bi bi-box-arrow-left me-2"></i> Keluar
+        <!-- Sidebar Footer -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-pink-100">
+            <a href="{{ route('logout') }}" class="text-primary hover:text-primary-dark flex items-center font-medium">
+                <i class="bi bi-box-arrow-left mr-2"></i>
+                <span>Keluar</span>
             </a>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <div class="content-card">
+    <div class="ml-64 p-8 min-h-screen">
+        <div class="bg-white rounded-lg shadow-sm p-8 max-w-3xl">
             <!-- Back Button -->
-            <a href="{{ route('produk.index') }}" class="btn-back">
-                <i class="bi bi-arrow-left"></i>
+            <a href="{{ route('admin.produk.index') }}" class="inline-flex items-center text-gray-500 hover:text-primary transition-colors mb-6">
+                <i class="bi bi-arrow-left mr-2"></i>
                 Kembali ke Daftar Produk
             </a>
 
             <!-- Form Title -->
-            <h4 class="mb-4">Tambah Produk Baru</h4>
+            <h4 class="text-2xl font-semibold text-gray-900 mb-6">Tambah Produk Baru</h4>
 
             <!-- Form -->
-            <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.produk.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <div class="mb-3">
-                    <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
+                <!-- Nama Produk -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Nama Produk <span class="text-primary">*</span>
+                    </label>
                     <input type="text"
-                           class="form-control @error('nama_produk') is-invalid @enderror"
+                           class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('nama_produk') border-red-500 @enderror"
                            name="nama_produk"
                            value="{{ old('nama_produk') }}"
                            placeholder="Contoh: Buket Mawar Pink Premium"
                            required>
                     @error('nama_produk')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Gambar Produk <span class="text-danger">*</span></label>
+                <!-- Gambar Produk -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Gambar Produk <span class="text-primary">*</span>
+                    </label>
                     <input type="file"
-                           class="form-control @error('gambar_produk') is-invalid @enderror"
+                           class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('gambar_produk') border-red-500 @enderror"
                            name="gambar_produk"
                            accept="image/*"
                            id="imageInput"
                            required>
                     @error('gambar_produk')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
 
                     <!-- Image Preview -->
-                    <div class="image-preview" id="imagePreview">
-                        <div class="image-preview-placeholder">
-                            <i class="bi bi-image" style="font-size: 2rem;"></i>
-                            <p class="mb-0 small">Preview gambar</p>
+                    <div id="imagePreview" class="hidden mt-4">
+                        <p class="text-sm font-medium text-gray-700 mb-2">Preview Gambar:</p>
+                        <div class="w-40 h-40 border-2 border-dashed border-pink-200 rounded-lg flex items-center justify-center overflow-hidden">
+                            <div class="text-center text-gray-400">
+                                <i class="bi bi-image text-3xl"></i>
+                                <p class="text-xs mt-2">Preview gambar</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Kategori <span class="text-danger">*</span></label>
-                    <select class="form-select @error('id_kategori') is-invalid @enderror"
+                <!-- Kategori -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Kategori <span class="text-primary">*</span>
+                    </label>
+                    <select class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('id_kategori') border-red-500 @enderror"
                             name="id_kategori"
                             required>
                         <option value="">Pilih Kategori</option>
@@ -287,66 +143,75 @@
                         @endforeach
                     </select>
                     @error('id_kategori')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Deskripsi Produk <span class="text-danger">*</span></label>
-                    <textarea class="form-control @error('deskripsi_produk') is-invalid @enderror"
+                <!-- Deskripsi -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Deskripsi Produk <span class="text-primary">*</span>
+                    </label>
+                    <textarea class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('deskripsi_produk') border-red-500 @enderror"
                               name="deskripsi_produk"
                               rows="4"
                               placeholder="Jelaskan detail produk..."
                               required>{{ old('deskripsi_produk') }}</textarea>
                     @error('deskripsi_produk')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Harga (Rp) <span class="text-danger">*</span></label>
+                <!-- Harga & Stok -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Harga -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Harga (Rp) <span class="text-primary">*</span>
+                        </label>
                         <input type="number"
-                               class="form-control @error('harga_produk') is-invalid @enderror"
+                               class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('harga_produk') border-red-500 @enderror"
                                name="harga_produk"
                                value="{{ old('harga_produk') }}"
                                placeholder="250000"
                                min="0"
                                required>
                         @error('harga_produk')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Stok <span class="text-danger">*</span></label>
+                    <!-- Stok -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Stok <span class="text-primary">*</span>
+                        </label>
                         <input type="number"
-                               class="form-control @error('stok_produk') is-invalid @enderror"
+                               class="w-full px-4 py-2.5 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all @error('stok_produk') border-red-500 @enderror"
                                name="stok_produk"
                                value="{{ old('stok_produk') }}"
                                placeholder="15"
                                min="0"
                                required>
                         @error('stok_produk')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
 
-                <div class="d-flex gap-2 mt-4">
-                    <button type="submit" class="btn-submit">
-                        <i class="bi bi-check-circle me-2"></i>Simpan Produk
+                <!-- Buttons -->
+                <div class="flex gap-3 mt-8">
+                    <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-8 py-2.5 rounded-lg font-medium transition-all shadow-sm hover:shadow inline-flex items-center">
+                        <i class="bi bi-check-circle mr-2"></i>
+                        Simpan Produk
                     </button>
-                    <a href="{{ route('produk.index') }}" class="btn-cancel">
+                    <a href="{{ route('admin.produk.index') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-2.5 rounded-lg font-medium transition-colors inline-flex items-center">
                         Batal
                     </a>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         // Image Preview
@@ -355,9 +220,13 @@
             const preview = document.getElementById('imagePreview');
 
             if (file) {
+                preview.classList.remove('hidden');
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                    preview.innerHTML = `
+                        <p class="text-sm font-medium text-gray-700 mb-2">Preview Gambar:</p>
+                        <img src="${e.target.result}" alt="Preview" class="w-40 h-40 object-cover rounded-lg border-2 border-pink-200">
+                    `;
                 }
                 reader.readAsDataURL(file);
             }

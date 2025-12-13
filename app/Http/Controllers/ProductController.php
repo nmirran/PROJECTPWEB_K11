@@ -60,7 +60,7 @@ class ProductController extends Controller
             'gambar_produk' => $fileName,
         ]);
 
-        return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan!');
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     /**
@@ -110,7 +110,7 @@ class ProductController extends Controller
             'gambar_produk' => $fileName
         ]);
 
-        return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui!');
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
     /**
@@ -126,6 +126,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus!');
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil dihapus!');
     }
 }
