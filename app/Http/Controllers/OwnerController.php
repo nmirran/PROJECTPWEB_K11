@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\store;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class OwnerController extends Controller
 {
@@ -92,20 +96,86 @@ class OwnerController extends Controller
     public function updateProfilToko(Request $request)
     {
         $request->validate([
-            'nama_toko' => 'required',
-            'deskripsi' => 'required',
-            'status'    => 'required'
+            'nama_toko'    => 'required',
+            'deskripsi'    => 'required',
+            'tentang_kami' => 'required',
         ]);
 
         $toko = Store::first();
 
         $toko->update([
-            'nama_toko' => $request->nama_toko,
-            'deskripsi' => $request->deskripsi,
-            'status'    => $request->status
+            'nama_toko'    => $request->nama_toko,
+            'deskripsi'    => $request->deskripsi,
+            'tentang_kami' => $request->tentang_kami,
         ]);
 
         return redirect('/owner/profil_toko')->with('success', 'Profil toko berhasil diperbarui!');
     }
 
+    public function laporanPenjualan(Request $request)
+    {
+        $bulanDipilih = (int) ($request->bulan ?? date('m'));
+        $tahunDipilih = (int) ($request->tahun ?? date('Y'));
+
+        $laporan = DB::table('pesanan')
+            ->join('detail_pesanan', 'pesanan.id_pesanan', '=', 'detail_pesanan.id_pesanan')
+            ->select(
+                DB::raw('DATE(pesanan.tanggal_pemesanan) as tanggal'),
+                DB::raw('SUM(detail_pesanan.quantity_per_produk) as total_produk')
+            )
+            ->whereMonth('pesanan.tanggal_pemesanan', $bulanDipilih)
+            ->whereYear('pesanan.tanggal_pemesanan', $tahunDipilih)
+            ->groupBy('tanggal')
+            ->orderBy('tanggal')
+            ->get();
+
+        $labels = [];
+        $data = [];
+
+        foreach ($laporan as $item) {
+            $labels[] = Carbon::parse($item->tanggal)->format('d M');
+            $data[] = $item->total_produk;
+        }
+
+        $namaBulan = Carbon::create()->month($bulanDipilih)->translatedFormat('F');
+
+        return view('dashboard.owner.laporan_penjualan', compact(
+            'labels',
+            'data',
+            'bulanDipilih',
+            'tahunDipilih',
+            'namaBulan'
+        ));
+    }
+
+    public function profilSaya()
+    {
+        $user = Auth::user();
+        return view('dashboard.owner.profil_saya', compact('user'));
+    }
+
+    public function updateProfilSaya(Request $request)
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id_user . ',id_user',
+            'no_hp' => 'required|string|max:20',
+            'password' => 'nullable|min:6'
+        ]);
+
+        $user->nama = $request->nama;
+        $user->email = $request->email;
+        $user->no_hp = $request->no_hp;
+
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return back()->with('success', 'Profil berhasil diperbarui');
+    }
 }

@@ -12,6 +12,6 @@ class Store extends Model
     protected $fillable = [
         'nama_toko',
         'deskripsi',
-        'status'
+        'tentang_kami',
     ];
 }

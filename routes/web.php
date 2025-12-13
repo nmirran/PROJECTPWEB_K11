@@ -44,6 +44,11 @@ Route::middleware(['auth'])
         Route::get('/profil_toko', [OwnerController::class, 'showProfilToko'])->middleware('auth');
         Route::get('/profil_toko_edit', [OwnerController::class, 'editProfilToko'])->middleware('auth');
         Route::post('/profil_toko_edit', [OwnerController::class, 'updateProfilToko'])->middleware('auth');
+
+        Route::get('/laporan_penjualan', [OwnerController::class, 'laporanPenjualan'])->middleware('auth');
+
+        Route::get('/profil_saya', [OwnerController::class, 'profilSaya']);
+        Route::post('/profil_saya', [OwnerController::class, 'updateProfilSaya']);
     });
 
 Route::middleware(['auth'])

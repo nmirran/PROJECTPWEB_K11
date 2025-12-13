@@ -1,8 +1,6 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', 'BrownyGift - Buket Bunga Aesthetic & Fresh'); ?>
 
-@section('title', 'BrownyGift - Buket Bunga Aesthetic & Fresh')
-
-@push('styles')
+<?php $__env->startPush('styles'); ?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         .hero-pattern {
@@ -11,11 +9,11 @@
             background-size: 20px 20px;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
-    {{-- Header / Hero --}}
+    
     <header class="hero-pattern min-h-[70vh] flex items-center justify-center text-center px-4">
         <div class="max-w-3xl">
             <span
@@ -23,13 +21,15 @@
                 Premium Florist Shop
             </span>
             <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
-                {{ $store->nama_toko }}
+                <?php echo e($store->nama_toko); ?>
+
             </h1>
             <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-                {{ $store->deskripsi }}
+                <?php echo e($store->deskripsi); ?>
+
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ url('/login') }}"
+                <a href="<?php echo e(url('/login')); ?>"
                     class="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
                     Lihat Koleksi
                 </a>
@@ -41,7 +41,7 @@
         </div>
     </header>
 
-    {{-- Section About --}}
+    
     <section id="about" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
@@ -55,14 +55,15 @@
                         <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-pink-500"></span>
                     </h2>
                     <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                        {!! nl2br(e($store->tentang_kami)) !!}
+                        <?php echo nl2br(e($store->tentang_kami)); ?>
+
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- Section Services --}}
+    
     <section id="services" class="py-20 bg-pink-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -105,12 +106,12 @@
         </div>
     </section>
 
-    {{-- Section Products --}}
+    
     <section id="products" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Koleksi Buket Terpopuler</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                @php
+                <?php
                     $items = [
                         [
                             'name' => 'Rose Romance',
@@ -138,27 +139,30 @@
                             'image_url' => 'http://i.pinimg.com/1200x/99/6c/bb/996cbb224925eb92b38c57c0fadd8ba9.jpg',
                         ],
                     ];
-                @endphp
+                ?>
 
-                @foreach ($items as $item)
+                <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div
                         class="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                         <div class="relative overflow-hidden">
-                            <img src="{{ $item['image_url'] }}" alt="Buket {{ $item['name'] }}"
+                            <img src="<?php echo e($item['image_url']); ?>" alt="Buket <?php echo e($item['name']); ?>"
                                 class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
                             <div
                                 class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-pink-600 font-bold text-sm">
-                                {{ $item['price'] }}
+                                <?php echo e($item['price']); ?>
+
                             </div>
                         </div>
                         <div class="p-6">
-                            <h5 class="text-xl font-bold text-gray-800 mb-2">{{ $item['name'] }}</h5>
-                            <p class="text-gray-500 text-sm mb-4">{{ $item['desc'] }}</p>
+                            <h5 class="text-xl font-bold text-gray-800 mb-2"><?php echo e($item['name']); ?></h5>
+                            <p class="text-gray-500 text-sm mb-4"><?php echo e($item['desc']); ?></p>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\COOLYEAHH!!\SMT 3\PROJECTPWEB_K11\resources\views/landing.blade.php ENDPATH**/ ?>
