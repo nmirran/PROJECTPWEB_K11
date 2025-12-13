@@ -28,12 +28,12 @@
 
 <body class="bg-pink-50 font-sans">
     <div class="flex">
-        @include('components.sidebar-admin')
+        <?php echo $__env->make('components.sidebar-admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
         <div class="flex-1 ml-64 p-8 min-h-screen">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
     </div>
 </body>
 
-</html>
+</html><?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/layouts/admin.blade.php ENDPATH**/ ?>
