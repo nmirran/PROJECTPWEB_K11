@@ -1,10 +1,8 @@
-@extends('layouts.owner')
-
-@section('title', 'Laporan Penjualan')
+<?php $__env->startSection('title', 'Laporan Penjualan'); ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <h2 class="text-3xl font-bold text-pink-800 mb-6 text-center">
     Laporan Penjualan
@@ -19,10 +17,10 @@
     new Chart(document.getElementById('chartPenjualan'), {
         type: 'bar',
         data: {
-            labels: {!! json_encode($labels) !!},
+            labels: <?php echo json_encode($labels); ?>,
             datasets: [{
                 label: 'Jumlah Produk Terjual',
-                data: {!! json_encode($data) !!},
+                data: <?php echo json_encode($data); ?>,
                 backgroundColor: '#d81b60',
                 borderRadius: 8
             }]
@@ -31,4 +29,6 @@
     });
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.owner', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/dashboard/owner/laporan_penjualan.blade.php ENDPATH**/ ?>

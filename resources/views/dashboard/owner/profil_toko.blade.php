@@ -2,6 +2,8 @@
 
 @section('title', 'Profil Toko')
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
 @section('content')
 
 <h2 class="text-3xl font-bold text-pink-800 mb-8 text-center">
@@ -28,7 +30,7 @@
 
     <div class="text-right mt-8">
         <a href="/owner/profil_toko_edit"
-           class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 rounded-xl transition">
+            class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 rounded-xl transition">
             Edit Profil
         </a>
     </div>

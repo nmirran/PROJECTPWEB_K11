@@ -37,9 +37,20 @@ class OwnerController extends Controller
         return back()->with('success', 'Akun karyawan berhasil dibuat!');
     }
 
-    public function listKaryawan()
+    public function listKaryawan(Request $request) // Tambahkan Request di sini
     {
-        $karyawan = User::where('id_role', 2)->orderBy('id_user', 'desc')->get();
+        $search = $request->query('search'); // Ambil input dari input name="search"
+
+        $karyawan = User::where('id_role', 2)
+            ->when($search, function ($query) use ($search) {
+                return $query->where(function ($q) use ($search) {
+                    $q->where('nama', 'LIKE', "%{$search}%")
+                        ->orWhere('email', 'LIKE', "%{$search}%")
+                        ->orWhere('id_user', 'LIKE', "%{$search}%");
+                });
+            })
+            ->orderBy('id_user', 'desc')
+            ->get();
 
         return view('dashboard.owner.karyawan_list', compact('karyawan'));
     }

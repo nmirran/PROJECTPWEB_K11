@@ -1,5 +1,7 @@
 <?php $__env->startSection('title', 'Profil Toko'); ?>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
 <?php $__env->startSection('content'); ?>
 
 <h2 class="text-3xl font-bold text-pink-800 mb-8 text-center">
@@ -29,7 +31,7 @@
 
     <div class="text-right mt-8">
         <a href="/owner/profil_toko_edit"
-           class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 rounded-xl transition">
+            class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 rounded-xl transition">
             Edit Profil
         </a>
     </div>
@@ -37,5 +39,4 @@
 </div>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.owner', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/dashboard/owner/profil_toko.blade.php ENDPATH**/ ?>
