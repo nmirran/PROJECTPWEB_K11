@@ -5,551 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin - BrownyGift</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background: white;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-            z-index: 1000;
-        }
-
-        .sidebar-header {
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .sidebar-header h5 {
-            color: #dc3545;
-            margin-bottom: 0.25rem;
-            font-weight: 600;
-        }
-
-        .sidebar-header small {
-            color: #6c757d;
-            font-size: 0.875rem;
-        }
-
-        .sidebar-nav {
-            padding: 1rem 0;
-        }
-
-        .nav-link {
-            color: #495057;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-link:hover {
-            background-color: #f8f9fa;
-            color: #dc3545;
-        }
-
-        .nav-link.active {
-            background-color: #fff5f5;
-            color: #dc3545;
-            border-left-color: #dc3545;
-            font-weight: 500;
-        }
-
-        .nav-link i {
-            margin-right: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        .sidebar-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .main-content {
-            margin-left: 250px;
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        .page-header {
-            margin-bottom: 2rem;
-        }
-
-        .page-header h4 {
-            color: #212529;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-header p {
-            color: #6c757d;
-            margin-bottom: 0;
-        }
-
-        /* Alert Section */
-        .alert-notification {
-            background: #fff9e6;
-            border-left: 4px solid #ffc107;
-            border-radius: 0.5rem;
-            padding: 1rem 1.25rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .alert-notification i {
-            color: #ffc107;
-            font-size: 1.25rem;
-            margin-right: 0.75rem;
-        }
-
-        .alert-notification .alert-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .alert-notification .alert-text {
-            color: #856404;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .btn-alert {
-            background-color: #ffc107;
-            color: #000;
-            border: none;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.3s;
-        }
-
-        .btn-alert:hover {
-            background-color: #e0a800;
-            color: #000;
-        }
-
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .stat-card .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 0.75rem;
-        }
-
-        .stat-card h6 {
-            color: #6c757d;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .stat-card .stat-value {
-            color: #212529;
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
-        .stat-icon.pink {
-            background-color: #ffe4e8;
-            color: #dc3545;
-        }
-
-        .stat-icon.blue {
-            background-color: #e3f2fd;
-            color: #2196f3;
-        }
-
-        .stat-icon.yellow {
-            background-color: #fff9e6;
-            color: #ffc107;
-        }
-
-        .stat-icon.green {
-            background-color: #e8f5e9;
-            color: #4caf50;
-        }
-
-        /* Menu Cards */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .menu-card {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .menu-card .menu-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .menu-card .menu-icon.pink {
-            background-color: #ffe4e8;
-            color: #dc3545;
-        }
-
-        .menu-card .menu-icon.blue {
-            background-color: #e3f2fd;
-            color: #2196f3;
-        }
-
-        .menu-card .menu-icon.green {
-            background-color: #e8f5e9;
-            color: #4caf50;
-        }
-
-        .menu-card h5 {
-            color: #212529;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .menu-card p {
-            color: #6c757d;
-            font-size: 0.875rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .badge-primary {
-            background-color: #dc3545;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        /* Activity Section */
-        .activity-section {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .activity-section h5 {
-            color: #dc3545;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .activity-item {
-            display: flex;
-            align-items: start;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 0.75rem;
-            transition: all 0.3s;
-        }
-
-        .activity-item:hover {
-            background-color: #f8f9fa;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-
-        .activity-icon.success {
-            background-color: #e8f5e9;
-            color: #4caf50;
-        }
-
-        .activity-icon.info {
-            background-color: #e3f2fd;
-            color: #2196f3;
-        }
-
-        .activity-icon.warning {
-            background-color: #fff9e6;
-            color: #ffc107;
-        }
-
-        .activity-content {
-            flex: 1;
-        }
-
-        .activity-content p {
-            margin: 0 0 0.25rem 0;
-            color: #212529;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .activity-content small {
-            color: #6c757d;
-            font-size: 0.813rem;
-        }
-
-        @media (max-width: 992px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff69b4',
+                        'primary-dark': '#ff1493',
+                        'primary-light': '#ffb6c1',
+                        'pink-50': '#fff0f5',
+                        'pink-100': '#ffe4e8',
+                    }
+                }
             }
         }
-
-        @media (max-width: 576px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-pink-50 font-sans">
     <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h5>BrownyGift</h5>
-            <small>Admin</small>
+    <div class="fixed top-0 left-0 h-screen w-64 bg-white shadow-sm z-50">
+        <!-- Sidebar Header -->
+        <div class="p-6 border-b border-pink-100">
+            <h5 class="text-primary font-semibold text-xl mb-1">BrownyGift</h5>
+            <small class="text-gray-500 text-sm">Admin</small>
         </div>
 
-        <nav class="sidebar-nav">
-            <a href="/admin" class="nav-link active">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
+        <!-- Sidebar Navigation -->
+        <nav class="py-4">
+            <a href="/admin" class="flex items-center px-6 py-3 bg-pink-50 text-primary font-medium border-l-4 border-primary">
+                <i class="bi bi-speedometer2 text-lg mr-3"></i>
+                <span>Dashboard</span>
             </a>
-            <a href="/admin/produk" class="nav-link">
-                <i class="bi bi-box-seam"></i>
-                Produk
+            <a href="/admin/profile" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-person text-lg mr-3"></i>
+                <span>Profil</span>
             </a>
-            <a href="#" class="nav-link">
-                <i class="bi bi-receipt"></i>
-                Pesanan
+            <a href="/admin/produk" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-box-seam text-lg mr-3"></i>
+                <span>Produk</span>
             </a>
-            <a href="#" class="nav-link">
-                <i class="bi bi-file-earmark-text"></i>
-                Laporan
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-receipt text-lg mr-3"></i>
+                <span>Pesanan</span>
             </a>
-            <a href="/admin/profile" class="nav-link">
-                <i class="bi bi-person"></i>
-                Profil
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-pink-50 hover:text-primary transition-all border-l-4 border-transparent hover:border-primary">
+                <i class="bi bi-file-earmark-text text-lg mr-3"></i>
+                <span>Laporan</span>
             </a>
         </nav>
 
-        <div class="sidebar-footer">
-            <a href="<?php echo e(url('/logout')); ?>" class="text-danger text-decoration-none" onclick="return confirm('Yakin logout?')">
-                <i class="bi bi-box-arrow-left me-2"></i> Keluar
+        <!-- Sidebar Footer -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-pink-100">
+            <a href="<?php echo e(url('/logout')); ?>" class="text-primary hover:text-primary-dark flex items-center font-medium" onclick="return confirm('Yakin logout?')">
+                <i class="bi bi-box-arrow-left mr-2"></i>
+                <span>Keluar</span>
             </a>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
+    <div class="ml-64 p-8 min-h-screen">
         <!-- Page Header -->
-        <div class="page-header">
-            <h4>Dashboard Admin</h4>
-            <p>Kelola pesanan dan produk toko</p>
+        <div class="mb-8">
+            <h4 class="text-2xl font-semibold text-gray-900 mb-2">Dashboard Admin</h4>
+            <p class="text-gray-500">Kelola pesanan dan produk toko</p>
         </div>
 
         <!-- Alert Notification -->
-        <div class="alert-notification">
-            <div class="alert-content">
-                <i class="bi bi-exclamation-triangle-fill"></i>
-                <span class="alert-text">3 pesanan menunggu konfirmasi pembayaran</span>
+        <?php if(isset($pendingOrders) && $pendingOrders > 0): ?>
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r mb-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="bi bi-exclamation-triangle-fill text-yellow-500 text-xl mr-3"></i>
+                    <span class="text-yellow-800 font-medium"><?php echo e($pendingOrders); ?> pesanan menunggu konfirmasi pembayaran</span>
+                </div>
+                <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Lihat Pesanan
+                </a>
             </div>
-            <button class="btn-alert">Lihat Pesanan</button>
         </div>
+        <?php endif; ?>
 
         <!-- Stats Grid -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-header">
-                    <h6>Total Pesanan</h6>
-                    <div class="stat-icon pink">
-                        <i class="bi bi-bag"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Pesanan -->
+            <div class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <h6 class="text-sm font-medium text-gray-600">Total Pesanan</h6>
+                    <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
+                        <i class="bi bi-bag text-primary text-xl"></i>
                     </div>
                 </div>
-                <h3 class="stat-value">47</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($totalOrders ?? 0); ?></h3>
             </div>
 
-            <div class="stat-card">
-                <div class="stat-header">
-                    <h6>Sedang Diproses</h6>
-                    <div class="stat-icon blue">
-                        <i class="bi bi-arrow-repeat"></i>
+            <!-- Sedang Diproses -->
+            <div class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <h6 class="text-sm font-medium text-gray-600">Sedang Diproses</h6>
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="bi bi-arrow-repeat text-blue-500 text-xl"></i>
                     </div>
                 </div>
-                <h3 class="stat-value">12</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($processingOrders ?? 0); ?></h3>
             </div>
 
-            <div class="stat-card">
-                <div class="stat-header">
-                    <h6>Dalam Pengiriman</h6>
-                    <div class="stat-icon yellow">
-                        <i class="bi bi-truck"></i>
+            <!-- Dalam Pengiriman -->
+            <div class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <h6 class="text-sm font-medium text-gray-600">Dalam Pengiriman</h6>
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <i class="bi bi-truck text-yellow-500 text-xl"></i>
                     </div>
                 </div>
-                <h3 class="stat-value">8</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($shippingOrders ?? 0); ?></h3>
             </div>
 
-            <div class="stat-card">
-                <div class="stat-header">
-                    <h6>Selesai</h6>
-                    <div class="stat-icon green">
-                        <i class="bi bi-check-circle"></i>
+            <!-- Selesai -->
+            <div class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <h6 class="text-sm font-medium text-gray-600">Selesai</h6>
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="bi bi-check-circle text-green-500 text-xl"></i>
                     </div>
                 </div>
-                <h3 class="stat-value">25</h3>
+                <h3 class="text-3xl font-bold text-gray-900"><?php echo e($completedOrders ?? 0); ?></h3>
             </div>
         </div>
 
         <!-- Menu Grid -->
-        <div class="menu-grid">
-            <a href="/admin/produk" class="menu-card">
-                <div class="menu-icon pink">
-                    <i class="bi bi-box-seam"></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Kelola Produk -->
+            <a href="/admin/produk" class="bg-white rounded-xl shadow-sm p-8 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
+                    <i class="bi bi-box-seam text-primary text-2xl"></i>
                 </div>
-                <h5>Kelola Produk</h5>
-                <p>Tambah, edit, atau hapus produk</p>
+                <h5 class="text-lg font-semibold text-gray-900 mb-2">Kelola Produk</h5>
+                <p class="text-gray-500 text-sm">Tambah, edit, atau hapus produk</p>
             </a>
 
-            <a href="#" class="menu-card">
-                <div class="menu-icon blue">
-                    <i class="bi bi-receipt"></i>
+            <!-- Pesanan -->
+            <a href="#" class="bg-white rounded-xl shadow-sm p-8 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center relative">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                    <i class="bi bi-receipt text-blue-500 text-2xl"></i>
                 </div>
-                <h5>Pesanan</h5>
-                <p>Kelola dan proses pesanan</p>
-                <span class="badge-primary">3 menunggu</span>
+                <h5 class="text-lg font-semibold text-gray-900 mb-2">Pesanan</h5>
+                <p class="text-gray-500 text-sm mb-3">Kelola dan proses pesanan</p>
+                <?php if(isset($pendingOrders) && $pendingOrders > 0): ?>
+                <span class="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">
+                    <?php echo e($pendingOrders); ?> menunggu
+                </span>
+                <?php endif; ?>
             </a>
 
-            <a href="#" class="menu-card">
-                <div class="menu-icon green">
-                    <i class="bi bi-file-earmark-text"></i>
+            <!-- Laporan -->
+            <a href="#" class="bg-white rounded-xl shadow-sm p-8 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
+                    <i class="bi bi-file-earmark-text text-green-500 text-2xl"></i>
                 </div>
-                <h5>Laporan</h5>
-                <p>Lihat laporan penjualan</p>
+                <h5 class="text-lg font-semibold text-gray-900 mb-2">Laporan</h5>
+                <p class="text-gray-500 text-sm">Lihat laporan penjualan</p>
             </a>
         </div>
 
         <!-- Activity Section -->
-        <div class="activity-section">
-            <h5>Aktivitas Terbaru</h5>
+        <div class="bg-white rounded-xl shadow-sm p-8">
+            <h5 class="text-primary font-semibold mb-6 flex items-center">
+                <i class="bi bi-clock-history mr-2"></i>
+                Aktivitas Terbaru
+            </h5>
 
-            <div class="activity-item">
-                <div class="activity-icon success">
-                    <i class="bi bi-check-circle"></i>
+            <div class="space-y-4">
+                <?php $__empty_1 = true; $__currentLoopData = $activities ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $activity): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                <div class="flex items-start p-4 rounded-lg hover:bg-pink-50 transition-colors">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0
+                        <?php if($activity->icon_color == 'success'): ?> bg-green-100 text-green-600
+                        <?php elseif($activity->icon_color == 'info'): ?> bg-blue-100 text-blue-600
+                        <?php elseif($activity->icon_color == 'warning'): ?> bg-yellow-100 text-yellow-600
+                        <?php else: ?> bg-pink-100 text-primary
+                        <?php endif; ?>">
+                        <i class="<?php echo e($activity->icon); ?> text-lg"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-900 font-medium text-sm"><?php echo e($activity->description); ?></p>
+                        <small class="text-gray-500 text-xs"><?php echo e($activity->time_ago); ?></small>
+                    </div>
                 </div>
-                <div class="activity-content">
-                    <p>Pesanan #B-2024-012 telah selesai</p>
-                    <small>3 menit yang lalu</small>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                <div class="text-center py-12 text-gray-400">
+                    <i class="bi bi-inbox text-5xl mb-4 block opacity-30"></i>
+                    <p>Belum ada aktivitas terbaru</p>
                 </div>
-            </div>
-
-            <div class="activity-item">
-                <div class="activity-icon info">
-                    <i class="bi bi-arrow-repeat"></i>
-                </div>
-                <div class="activity-content">
-                    <p>Produk "Buket Anniversary" stok ditambah</p>
-                    <small>1 jam yang lalu</small>
-                </div>
-            </div>
-
-            <div class="activity-item">
-                <div class="activity-icon warning">
-                    <i class="bi bi-exclamation-circle"></i>
-                </div>
-                <div class="activity-content">
-                    <p>Pesanan baru menunggu konfirmasi pembayaran</p>
-                    <small>2 jam yang lalu</small>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <?php /**PATH C:\laragon\www\PROJECTPWEB_K11\resources\views/dashboard/admin/index.blade.php ENDPATH**/ ?>

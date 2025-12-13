@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
             StatusPemesananSeeder::class,
             KecamatanSeeder::class,
             DesaSeeder::class,
-            StoreSeeder::class
+            StoreSeeder::class,
+            KategoriSeeder::class,
+            ProdukSeeder::class
 
 
         ]);

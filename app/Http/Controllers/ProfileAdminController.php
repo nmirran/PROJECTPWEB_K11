@@ -15,7 +15,7 @@ class ProfileAdminController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('admin.profile.index', compact('user'));
+        return view('dashboard.admin.profile', compact('user'));
     }
 
     /**
@@ -23,18 +23,13 @@ class ProfileAdminController extends Controller
      */
     public function update(Request $request)
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id_user . ',id_user',
             'no_handphone' => 'required|string|max:20',
-        ], [
-            'nama.required' => 'Nama lengkap harus diisi',
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah digunakan',
-            'no_handphone.required' => 'No. handphone harus diisi',
         ]);
 
         $user->update($validated);
@@ -48,6 +43,7 @@ class ProfileAdminController extends Controller
      */
     public function updatePassword(Request $request)
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         $request->validate([

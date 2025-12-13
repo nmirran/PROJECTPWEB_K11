@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         $products = Produk::paginate(10);
         // $kategori = Kategori::all();
-        return view('admin.produk.index', compact('products'));
+        return view('dashboard.admin.produk.index', compact('products'));
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('admin.produk.create', compact('kategori'));
+        return view('dashboard.admin.produk.create', compact('kategori'));
     }
 
     /**
@@ -70,7 +70,7 @@ class ProductController extends Controller
     {
         $product = Produk::findOrFail($id);
         $kategori = Kategori::all();
-        return view('admin.produk.edit', compact('product', 'kategori'));
+        return view('dashboard.admin.produk.edit', compact('product', 'kategori'));
     }
 
     /**
@@ -110,7 +110,7 @@ class ProductController extends Controller
             'gambar_produk' => $fileName
         ]);
 
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diperbarui!');
+        return redirect()->route('dashboard.admin.produk.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
     /**
